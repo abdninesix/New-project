@@ -2,7 +2,7 @@ import { ChevronDown, Globe } from "lucide-react";
 
 const MainNavbar = () => {
   return (
-    <div className="bg-white shadow-sm px-4 py-2 flex items-center justify-between text-sm">
+    <div className="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between text-sm">
       {/* Left: All Category */}
       <button className="flex items-center gap-1 text-gray-700 font-medium hover:text-blue-600">
         <span className="text-base">📂</span>

@@ -5,7 +5,7 @@ const HeaderTop = () => {
   const [category, setCategory] = useState("all");
 
   return (
-    <div className="bg-white shadow-sm px-4 py-3 flex items-center justify-between gap-4 text-sm">
+    <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between gap-4 text-sm">
       {/* Logo */}
       <div className="text-3xl font-extrabold text-blue-400 flex items-center gap-1">
         🛍️ <span>Brand</span>
