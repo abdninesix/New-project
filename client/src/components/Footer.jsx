@@ -4,6 +4,7 @@ import {
   Linkedin,
   Instagram,
   ShoppingBag,
+  Mail,
 } from "lucide-react";
 
 const Footer = () => {
@@ -11,12 +12,13 @@ const Footer = () => {
     <footer className="bg-[#f9f9f9] text-sm text-gray-700">
       {/* Subscribe Section */}
       <div className="border-t border-b border-gray-200 py-10 px-4">
-        <div className="max-w-[1200px] mx-auto text-center md:text-left md:flex items-center justify-between">
-          <div className="mb-4 md:mb-0">
-            <h3 className="font-semibold text-lg mb-1">Subscribe on our newsletter</h3>
-            <p className="text-gray-500 text-sm">Get daily news on upcoming offers from many suppliers all over the world</p>
+        <div className="max-w-[1200px] mx-auto text-center md:text-left md:flex flex-col items-center justify-between gap-4">
+          <div className="mb-4 md:mb-0 text-center">
+            <h3 className="font-bold text-xl mb-1">Subscribe on our newsletter</h3>
+            <p className="text-gray-500 text-lg">Get daily news on upcoming offers from many suppliers all over the world</p>
           </div>
           <form className="flex items-center gap-2 mt-4 md:mt-0">
+            <Mail className="text-gray-500"/>
             <input
               type="email"
               placeholder="Email"

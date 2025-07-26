@@ -20,7 +20,7 @@ const services = [
 
 const ExtraServices = () => {
   return (
-    <section className="py-12 bg-gray-100 text-center">
+    <section className="py-12 bg-gray-100 text-center mb-10">
       <h2 className="text-3xl font-bold mb-8">Our Extra Services</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
         {services.map((service, index) => (
