@@ -15,9 +15,9 @@ const Hero = () => {
         </div>
 
         {/* Main Banner Image */}
-        <div className="col-span-12 md:col-span-6">
+        <div className="h-[370px] w-full">
           <img
-            src="https://via.placeholder.com/600x300?text=Main+Banner"
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Main Banner"
             className="rounded-xl w-full h-full object-cover"
           />

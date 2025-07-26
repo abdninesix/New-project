@@ -1,37 +1,36 @@
 const SendQuote = () => {
   return (
-    <section className="py-16 px-6 bg-white border-t border-gray-200">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4">Send a Quote to Suppliers</h2>
-        <p className="text-gray-600 mb-8 max-w-xl mx-auto">
+    <section className="flex py-16 px-6 rounded-md" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1645640903590-6e6c86f8cce4?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
+
+      <div className="w-2/3 mx-auto text-left text-white">
+        <h2 className="text-3xl font-bold mb-4">An easy way to send requests to all suppliers</h2>
+        <p className="mb-8 mx-auto">
           Submit your product request and get quotes from verified suppliers.
         </p>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+      </div>
+
+      <div className="w-1/3 bg-white p-4 rounded-md">
+        <form className="flex flex-col gap-4 text-left">
           <input
             type="text"
-            placeholder="Your Name"
+            placeholder="What items do you need?"
             className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="email"
-            placeholder="Your Email"
+            placeholder="Type your details"
             className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
-            type="text"
-            placeholder="Product Name"
+            type="number"
+            placeholder="Quantity"
             className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 md:col-span-2"
           />
-          <textarea
-            rows="4"
-            placeholder="Describe your requirements"
-            className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 md:col-span-2"
-          ></textarea>
           <button
             type="submit"
-            className="bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition md:col-span-2"
+            className="w-fit bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition md:col-span-2"
           >
-            Send Quote
+            Send Query
           </button>
         </form>
       </div>

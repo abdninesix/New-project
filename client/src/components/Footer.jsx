@@ -3,6 +3,7 @@ import {
   Twitter,
   Linkedin,
   Instagram,
+  ShoppingBag,
 } from "lucide-react";
 
 const Footer = () => {
@@ -32,12 +33,24 @@ const Footer = () => {
       </div>
 
       {/* Links + App section */}
-      <div className="bg-gray-900 text-gray-300 py-10 px-4">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-6 mb-8">
+      <div className="bg-white py-10 px-4 text-lg">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mb-8">
+
+          {/* Logo and socials */}
+            <div className="flex flex-col items-start gap-6 font-bold text-base">
+              <span className="flex gap-2 items-center text-3xl text-blue-500"><ShoppingBag/>Brand</span>
+              <p className="text-gray-400 font-normal text-md">Best information about the company goes here</p>
+              <div className="flex gap-2">
+                <Facebook className="size-8 rounded-full p-1 bg-gray-300 hover:text-blue-500 cursor-pointer" />
+                <Twitter className="size-8 rounded-full p-1 bg-gray-300 hover:text-sky-500 cursor-pointer" />
+                <Linkedin className="size-8 rounded-full p-1 bg-gray-300 hover:text-blue-400 cursor-pointer" />
+                <Instagram className="size-8 rounded-full p-1 bg-gray-300 hover:text-pink-400 cursor-pointer" />
+              </div>
+            </div>
           {/* Column 1 */}
           <div>
-            <h4 className="text-white font-semibold mb-4">About</h4>
-            <ul className="space-y-2">
+            <h4 className="font-semibold mb-4">About</h4>
+            <ul className="space-y-2 text-gray-400">
               <li>About Us</li>
               <li>Find store</li>
               <li>Categories</li>
@@ -47,8 +60,8 @@ const Footer = () => {
 
           {/* Column 2 */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Partnership</h4>
-            <ul className="space-y-2">
+            <h4 className="font-semibold mb-4">Partnership</h4>
+            <ul className="space-y-2 text-gray-400">
               <li>About Us</li>
               <li>Find store</li>
               <li>Categories</li>
@@ -58,8 +71,8 @@ const Footer = () => {
 
           {/* Column 3 */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Information</h4>
-            <ul className="space-y-2">
+            <h4 className="font-semibold mb-4">Information</h4>
+            <ul className="space-y-2 text-gray-400">
               <li>Help Center</li>
               <li>Money Refund</li>
               <li>Shipping</li>
@@ -69,8 +82,8 @@ const Footer = () => {
 
           {/* Column 4 */}
           <div>
-            <h4 className="text-white font-semibold mb-4">For users</h4>
-            <ul className="space-y-2">
+            <h4 className="font-semibold mb-4">For users</h4>
+            <ul className="space-y-2 text-gray-400">
               <li>Login</li>
               <li>Register</li>
               <li>Settings</li>
@@ -80,7 +93,7 @@ const Footer = () => {
 
           {/* App store */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Get app</h4>
+            <h4 className="font-semibold mb-4">Get app</h4>
             <div className="flex flex-col gap-3">
               <img src="/apple.png" alt="App Store" className="w-32" />
               <img src="/google.png" alt="Google Play" className="w-32" />
@@ -89,24 +102,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Row */}
-        <div className="border-t border-gray-700 pt-6 flex flex-col md:flex-row items-center justify-between text-xs gap-3">
-          <div className="flex items-center gap-2 text-white font-bold text-base">
-            <span className="text-blue-500">🏪 Brand</span>
-            <p className="text-gray-400 font-normal text-xs">Best information about the company goes here</p>
-          </div>
-
-          <div className="flex gap-4 text-white">
-            <Facebook className="w-4 h-4 hover:text-blue-500 cursor-pointer" />
-            <Twitter className="w-4 h-4 hover:text-sky-500 cursor-pointer" />
-            <Linkedin className="w-4 h-4 hover:text-blue-400 cursor-pointer" />
-            <Instagram className="w-4 h-4 hover:text-pink-400 cursor-pointer" />
-          </div>
-
-          <div className="flex items-center gap-2 text-gray-400">
-            <span className="border px-2 py-1 rounded text-xs">🇺🇸 English</span>
-            <span>&copy; 2025 Ecommerce.</span>
-          </div>
+        <div className="flex items-center justify-between gap-2 text-gray-400">
+          <span className="text-lg">&copy; 2025 Ecommerce.</span>
+          <span className="border px-2 py-1 rounded">🇺🇸 English</span>
         </div>
+
       </div>
     </footer>
   );
