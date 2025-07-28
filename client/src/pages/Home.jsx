@@ -4,6 +4,7 @@ import DealsGrid from "../components/DealsGrid";
 import SuppliersRegion from "../components/SuppliersRegion";
 import ExtraServices from "../components/ExtraServices";
 import SendQuote from "../components/SendQuote";
+import Newsletter from "../components/Newsletter";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <SendQuote />
       <ExtraServices />
       <SuppliersRegion />
+      <Newsletter />
     </>
   );
 };

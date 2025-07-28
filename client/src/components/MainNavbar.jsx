@@ -1,4 +1,5 @@
 import { ChevronDown, Globe, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const MainNavbar = () => {
   return (
@@ -12,9 +13,9 @@ const MainNavbar = () => {
 
       {/* Center: Navigation Links */}
       <div className="hidden md:flex items-center gap-6 text-gray-700 font-medium">
+        <Link to="/products" className="hover:text-blue-600 font-bold">All Products</Link>
         <button className="hover:text-blue-600">Hot Offers</button>
         <button className="hover:text-blue-600">Gift Boxes</button>
-        <button className="hover:text-blue-600">Projects</button>
         <button className="hover:text-blue-600">Menu</button>
         <button className="hover:text-blue-600 flex items-end">Help<ChevronDown className="w-4 h-4" /></button>
       </div>

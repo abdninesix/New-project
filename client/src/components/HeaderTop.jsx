@@ -1,5 +1,6 @@
 import { User, MessageCircle, Heart, ShoppingCart, ShoppingBag } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const HeaderTop = () => {
   const [category, setCategory] = useState("all");
@@ -7,9 +8,9 @@ const HeaderTop = () => {
   return (
     <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between gap-4 text-sm">
       {/* Logo */}
-      <div className="text-3xl font-extrabold text-blue-400 flex items-center gap-2">
+      <Link to="/" className="text-3xl font-extrabold text-blue-400 flex items-center gap-2">
         <ShoppingBag/><span>Brand</span>
-      </div>
+      </Link>
 
       {/* Search Bar + Category */}
       <div className="flex-1 flex items-center max-w-3xl border border-blue-500 rounded-md overflow-hidden">
@@ -47,10 +48,10 @@ const HeaderTop = () => {
           <Heart className="w-5 h-5" />
           <span className="text-xs">Orders</span>
         </div>
-        <div className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+        <Link to="/cart" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
           <ShoppingCart className="w-5 h-5" />
           <span className="text-xs">My cart</span>
-        </div>
+        </Link>
       </div>
     </div>
   );
