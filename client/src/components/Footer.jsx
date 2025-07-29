@@ -12,17 +12,17 @@ const Footer = () => {
 
       {/* Links + App section */}
       <div className="bg-white py-10 px-4 text-lg">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mb-8">
+        <div className="mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mb-8">
 
           {/* Logo and socials */}
             <div className="flex flex-col items-start gap-6 font-bold text-base">
               <span className="flex gap-2 items-center text-3xl text-blue-500"><ShoppingBag/>Brand</span>
               <p className="text-gray-400 font-normal text-md">Best information about the company goes here</p>
-              <div className="flex gap-2">
-                <Facebook className="size-8 rounded-full p-1 bg-gray-300 hover:text-blue-500 cursor-pointer" />
-                <Twitter className="size-8 rounded-full p-1 bg-gray-300 hover:text-sky-500 cursor-pointer" />
-                <Linkedin className="size-8 rounded-full p-1 bg-gray-300 hover:text-blue-400 cursor-pointer" />
-                <Instagram className="size-8 rounded-full p-1 bg-gray-300 hover:text-pink-400 cursor-pointer" />
+              <div className="w-full p-2 flex justify-between">
+                <Facebook className="size-6 hover:text-blue-500 cursor-pointer" />
+                <Twitter className="size-6 hover:text-sky-500 cursor-pointer" />
+                <Linkedin className="size-6 hover:text-blue-400 cursor-pointer" />
+                <Instagram className="size-6 hover:text-pink-400 cursor-pointer" />
               </div>
             </div>
           {/* Column 1 */}
@@ -73,8 +73,8 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Get app</h4>
             <div className="flex flex-col gap-3">
-              <img src="/appstore.jpg" alt="Google Play" className="w-32 rounded-lg" />
-              <img src="/googleplay.jpg" alt="App Store" className="w-32 rounded-lg" />
+              <img src="/appstore.jpg" alt="Google Play" className="w-32 rounded-lg cursor-pointer" />
+              <img src="/googleplay.jpg" alt="App Store" className="w-32 rounded-lg cursor-pointer" />
             </div>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import Hero from "../components/Hero";
-import Featured from "../components/Featured";
 import DealsGrid from "../components/DealsGrid";
 import SuppliersRegion from "../components/SuppliersRegion";
 import ExtraServices from "../components/ExtraServices";
@@ -10,7 +9,6 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Featured />
       <DealsGrid />
       <SendQuote />
       <ExtraServices />

@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import ProductList from "./pages/ProductList";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import ProductCreate from "./pages/ProductCreate";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/product-details" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/create" element={<ProductCreate />} />
         </Routes>
         <Footer />
       </div>

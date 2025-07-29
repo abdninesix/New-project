@@ -20,16 +20,15 @@ const services = [
 
 const ExtraServices = () => {
   return (
-    <section className="py-12 bg-gray-100 text-center mb-10">
-      <h2 className="text-3xl font-bold mb-8">Our Extra Services</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
+    <section className="py-8">
+      <div className="flex flex-wrap items-center justify-center gap-6 max-w-6xl mx-auto">
         {services.map((service, index) => (
           <div
             key={index}
-            className="p-6 bg-white rounded-xl shadow hover:shadow-md transition duration-200"
+            className="flex flex-col items-center justify-center gap-2"
           >
-            <div className="mb-4 text-4xl flex justify-center">{service.icon}</div>
-            <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+            <div className="text-4xl p-4 rounded-full bg-gray-200">{service.icon}</div>
+            <h3 className="text-2xl font-semibold">{service.title}</h3>
             <p className="text-gray-600 text-sm">{service.desc}</p>
           </div>
         ))}

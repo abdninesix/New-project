@@ -1,6 +1,3 @@
-import HeaderTop from "../components/HeaderTop";
-import MainNavbar from "../components/MainNavbar";
-import Footer from "../components/Footer";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useState } from "react";
 import PromotionBanner from "../components/PromotionBanner";
@@ -56,7 +53,7 @@ const ProductDetails = () => {
                                     key={i}
                                     src="https://images.unsplash.com/photo-1547809483-f9bb32b1cb49?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                     alt="thumb"
-                                    className="w-18 object-cover rounded"
+                                    className="w-17 object-cover rounded"
                                 />
                             ))}
                         </div>
@@ -127,13 +124,13 @@ const ProductDetails = () => {
             {/* Tabs Section */}
             <div className="max-w-7xl mx-auto px-4 py-6 bg-white rounded-lg">
                 <div className="mt-8">
-                    <div className="border-b flex gap-6">
+                    <div className="flex gap-6">
                         {tabs.map((tab) => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`pb-2 text-sm md:text-base font-medium ${activeTab === tab
-                                    ? "text-blue-600 border-b-2 border-blue-600"
+                                    ? "text-blue-600 border-b-2 border-blue-500"
                                     : "text-gray-600 hover:text-blue-600"
                                     }`}
                             >

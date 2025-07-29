@@ -5,7 +5,7 @@ const MainNavbar = () => {
   return (
     <div className="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between text-sm">
       {/* Left: All Category */}
-      <button className="flex items-center gap-1 text-gray-700 font-medium hover:text-blue-600">
+      <button className="flex items-center gap-1 text-gray-700 font-medium cursor-pointer hover:text-blue-600">
         <Menu />
         <span> All Category</span>
         <ChevronDown className="w-4 h-4" />
@@ -13,7 +13,7 @@ const MainNavbar = () => {
 
       {/* Center: Navigation Links */}
       <div className="hidden md:flex items-center gap-6 text-gray-700 font-medium">
-        <Link to="/products" className="hover:text-blue-600 font-bold">All Products</Link>
+        <Link to="/products" className="hover:text-blue-600">All Products</Link>
         <button className="hover:text-blue-600">Hot Offers</button>
         <button className="hover:text-blue-600">Gift Boxes</button>
         <button className="hover:text-blue-600">Menu</button>
