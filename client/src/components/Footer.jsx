@@ -15,13 +15,13 @@ const Footer = () => {
         <div className="mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mb-8">
 
           {/* Logo and socials */}
-            <div className="flex flex-col items-start gap-6 font-bold text-base">
+            <div className="flex flex-col items-start gap-4 font-bold text-base">
               <span className="flex gap-2 items-center text-3xl text-blue-500"><ShoppingBag/>Brand</span>
               <p className="text-gray-400 font-normal text-md">Best information about the company goes here</p>
-              <div className="w-full p-2 flex justify-between">
-                <Facebook className="size-6 hover:text-blue-500 cursor-pointer" />
-                <Twitter className="size-6 hover:text-sky-500 cursor-pointer" />
-                <Linkedin className="size-6 hover:text-blue-400 cursor-pointer" />
+              <div className="flex gap-4">
+                <Facebook className="size-6 hover:fill-blue-500 hover:text-blue-500 cursor-pointer" />
+                <Twitter className="size-6 hover:fill-sky-400 hover:text-sky-400 cursor-pointer" />
+                <Linkedin className="size-6 hover:fill-blue-600 hover:text-blue-600 cursor-pointer" />
                 <Instagram className="size-6 hover:text-pink-400 cursor-pointer" />
               </div>
             </div>

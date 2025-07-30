@@ -1,24 +1,37 @@
 import Breadcrumbs from "../components/Breadcrumbs";
-import { useState } from "react";
 import PromotionBanner from "../components/PromotionBanner";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import API from "../api/axios";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
-const dummyProducts = Array(14).fill({
-    title: "Wireless Earbuds",
-    price: "$49.99",
-    desc: "High-quality wireless earbuds with noise cancellation.",
-    image: "https://images.unsplash.com/photo-1722439667098-f32094e3b1d4?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-});
-
 const ProductDetails = () => {
-
+    const { id } = useParams(); // product ID from route
     const [activeTab, setActiveTab] = useState("Description");
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    // Fetch single product
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await API.get(`/products/${id}`);
+                setProduct(res.data);
+            } catch (error) {
+                console.error("Error fetching product:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
 
     const renderContent = () => {
         switch (activeTab) {
             case "Description":
-                return <p className="text-gray-700">This is the product description. It gives an overview of the item.</p>;
+                return <p className="text-gray-700">{product?.description || "No description available."}</p>;
             case "Reviews":
                 return <p className="text-gray-700">User reviews will be displayed here.</p>;
             case "Shipping":
@@ -30,9 +43,11 @@ const ProductDetails = () => {
         }
     };
 
+    if (loading) return <div className="p-10 text-center">Loading product...</div>;
+    if (!product) return <div className="p-10 text-center text-red-500">Product not found.</div>;
+
     return (
         <div className="bg-sky-50 text-gray-900">
-
             {/* Breadcrumbs */}
             <Breadcrumbs />
 
@@ -43,15 +58,15 @@ const ProductDetails = () => {
                     {/* Product Image */}
                     <div className="bg-white rounded-lg p-4">
                         <img
-                            src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="Product"
+                            src={product.image}
+                            alt={product.name}
                             className="w-full h-auto rounded"
                         />
                         <div className="flex gap-2 mt-4">
                             {[...Array(5)].map((_, i) => (
                                 <img
                                     key={i}
-                                    src="https://images.unsplash.com/photo-1547809483-f9bb32b1cb49?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    src={product.image}
                                     alt="thumb"
                                     className="w-17 object-cover rounded"
                                 />
@@ -60,25 +75,16 @@ const ProductDetails = () => {
                     </div>
 
                     {/* Details */}
-                    <div className="bg-white rounded-lg p-4 space-y-4">
-                        <h1 className="text-xl font-semibold">
-                            Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
-                        </h1>
-                        <div className="text-green-600 font-medium">In stock</div>
-                        <div className="space-y-1">
-                            <div className="text-orange-600 font-bold text-lg">$98.00</div>
-                            <div className="text-sm">50-100 pcs</div>
-                            <div className="text-gray-500 line-through">$90.00 100-700 pcs</div>
-                            <div className="text-gray-500 line-through">$78.00 700+ pcs</div>
+                    <div className="bg-white rounded-lg p-4 space-y-2">
+                        <h1 className="text-xl font-semibold">{product.name}</h1>
+                        <div className={`${product.stock > 0 ? "text-green-600" : "text-red-600"} font-medium`}>
+                            {product.stock > 0 ? "In stock" : "Out of stock"}
                         </div>
                         <div className="text-sm text-gray-700">
-                            <strong>Price:</strong> Negotiable <br />
-                            <strong>Type:</strong> Classic shoes <br />
-                            <strong>Material:</strong> Plastic material <br />
-                            <strong>Design:</strong> Modern nice <br />
-                            <strong>Customization:</strong> Customized logo and packages <br />
-                            <strong>Protection:</strong> Refund Policy <br />
-                            <strong>Warranty:</strong> 2 years full warranty
+                            <div className="text-orange-600 font-bold text-lg">${product.price}</div>
+                            <strong>Stock:</strong> {product.stock || "Out of stock"} <br />
+                            <strong>Category:</strong> {product.category?.name || "N/A"} <br />
+                            <strong>Description:</strong> {product.description || "No details available"}
                         </div>
                     </div>
                 </div>
@@ -94,10 +100,10 @@ const ProductDetails = () => {
                                 <p className="text-xs text-green-600">Verified Seller</p>
                             </div>
                         </div>
-                        <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full">
+                        <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full cursor-pointer">
                             Send Inquiry
                         </button>
-                        <button className="mt-2 text-blue-600 text-sm w-full">
+                        <button className="mt-2 text-blue-600 text-sm w-full cursor-pointer hover:underline">
                             Seller's profile
                         </button>
                     </div>
@@ -122,7 +128,7 @@ const ProductDetails = () => {
             </div>
 
             {/* Tabs Section */}
-            <div className="max-w-7xl mx-auto px-4 py-6 bg-white rounded-lg">
+            <div className="max-w-7xl mx-auto px-4 py-6 bg-white rounded-lg mt-8 mb-8">
                 <div className="mt-8">
                     <div className="flex gap-6">
                         {tabs.map((tab) => (
@@ -130,8 +136,8 @@ const ProductDetails = () => {
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`pb-2 text-sm md:text-base font-medium ${activeTab === tab
-                                    ? "text-blue-600 border-b-2 border-blue-500"
-                                    : "text-gray-600 hover:text-blue-600"
+                                        ? "text-blue-600 border-b-2 border-blue-500"
+                                        : "text-gray-600 hover:text-blue-600"
                                     }`}
                             >
                                 {tab}
@@ -142,23 +148,8 @@ const ProductDetails = () => {
                 </div>
             </div>
 
-            {/* Related Products */}
-            <div className="max-w-7xl mx-auto px-4 py-6">
-                <h3 className="text-lg font-semibold mb-4">Related products</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-                    {dummyProducts.map((product) => (
-                        <div className="bg-white p-2 rounded text-sm text-center">
-                            <img src={product.image} alt="related" className="w-full h-40 object-cover mb-2" />
-                            {product.title} <br />
-                            <span className="text-gray-500">{product.price}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
             {/* Promotion Banner */}
             <PromotionBanner />
-
         </div>
     );
 };

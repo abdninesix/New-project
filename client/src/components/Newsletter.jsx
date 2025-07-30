@@ -15,11 +15,11 @@ const Newsletter = () => {
                         <input
                             type="email"
                             placeholder="Email"
-                            className="w-1/3 border border-gray-300 px-4 py-2 rounded-md focus:outline-none"
+                            className="w-1/3 border border-gray-300 bg-white px-4 py-2 rounded-md focus:outline-none"
                         />
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                            className="bg-blue-600 text-white cursor-pointer px-4 py-2 rounded-md hover:bg-blue-700"
                         >
                             Subscribe
                         </button>
