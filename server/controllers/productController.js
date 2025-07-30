@@ -47,7 +47,14 @@ export const createProduct = asyncHandler(async (req, res) => {
 // @route   GET /api/products
 // @access  Public
 export const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find().populate("category", "name");
+  const { search } = req.query;
+
+  const query = search
+    ? { name: { $regex: search, $options: "i" } } // Case-insensitive search
+    : {};
+
+  const products = await Product.find(query).populate("category", "name");
+
   res.json(products);
 });
 

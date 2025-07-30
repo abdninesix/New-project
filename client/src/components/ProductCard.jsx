@@ -19,7 +19,7 @@ const ProductCard = ({ product, viewMode }) => {
             Category: {category?.name || "N/A"} | Stock: {stock ?? 0}
           </p>
           <div className="flex flex-wrap items-center gap-2 text-sm mt-2">
-            <span className="text-blue-600 font-bold">${price}</span>
+            <span className="text-blue-600 font-bold">Rs.{price}</span>
             <span className="text-yellow-500">⭐⭐⭐⭐ 4.5</span>
             <span className="text-gray-500">(12K sold)</span>
           </div>
@@ -58,7 +58,7 @@ const ProductCard = ({ product, viewMode }) => {
         </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-4 text-sm">
-          <span className="text-blue-600 font-bold">${price}</span>
+          <span className="text-blue-600 font-bold">Rs.{price}</span>
           <span className="text-yellow-500">⭐⭐⭐⭐ 4.5</span>
           <span className="text-gray-500">(12K sold)</span>
           <Heart className="cursor-pointer text-gray-600 hover:text-red-500" />

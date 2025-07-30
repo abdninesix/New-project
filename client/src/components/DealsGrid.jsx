@@ -1,25 +1,60 @@
+import { useEffect, useState } from "react";
+import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import API from "../api/axios";
+
 const DealsGrid = () => {
-    
-  const products = Array(8).fill({
-    title: "Wireless Earbuds",
-    price: "$49.99",
-    image: "https://images.unsplash.com/photo-1722439667098-f32094e3b1d4?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  });
+  const [products, setProducts] = useState([]);
+
+  // Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await API.get("/products"); // Fetch all products
+        setProducts(res.data.slice(0, 8)); // Show first 8 as "Flash Deals"
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
-    <section className="px-4 py-6 bg-white mb-10">
+    <section className="px-4 py-6 bg-sky-50 mb-10">
       <div className="mx-auto text-center">
         <h2 className="text-3xl font-bold mb-6">Flash Deals</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {products.map((product, i) => (
-            <div key={i} className="bg-gray-100 text-left rounded hover:shadow">
+          {products.map((product) => (
+            <div
+              key={product._id}
+              className="bg-white rounded-lg border border-gray-300 p-4 w-full sm:w-[250px] flex flex-col"
+            >
               <img
                 src={product.image}
-                alt={product.title}
-                className="w-full h-40 object-cover rounded"
+                alt={product.name}
+                className="w-full h-40 object-cover rounded-md mb-2"
               />
-              <h3 className="ml-2 mt-2 text-sm">{product.title}</h3>
-              <p className="ml-2 font-bold text-blue-600">{product.price}</p>
+              <div className="flex-1 flex flex-col justify-between">
+                <h2 className="text-lg font-semibold line-clamp-1">{product.name}</h2>
+                <p className="text-gray-500 text-xs">
+                  Category: {product.category?.name || "N/A"} | Stock: {product.stock ?? 0}
+                </p>
+                <div className="flex flex-wrap items-center gap-2 text-sm mt-2">
+                  <span className="text-blue-600 font-bold">Rs.{product.price}</span>
+                  <span className="text-yellow-500">⭐⭐⭐⭐ 4.5</span>
+                  <span className="text-gray-500">(12K sold)</span>
+                </div>
+
+                <div className="flex justify-between mt-2 items-center">
+                  <Link
+                    to={`/products/${product._id}`}
+                    className="w-fit hover:underline text-blue-500 font-semibold text-sm"
+                  >
+                    View Details
+                  </Link>
+                  <Heart className="cursor-pointer text-gray-600 hover:text-red-500" />
+                </div>
+              </div>
             </div>
           ))}
         </div>

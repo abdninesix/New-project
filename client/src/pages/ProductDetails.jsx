@@ -3,6 +3,7 @@ import PromotionBanner from "../components/PromotionBanner";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "../api/axios";
+import DealsGrid from "../components/DealsGrid";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
@@ -56,11 +57,11 @@ const ProductDetails = () => {
                 {/* Left: Product Info */}
                 <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Product Image */}
-                    <div className="bg-white rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-4 flex flex-col justify-center items-center">
                         <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-auto rounded"
+                            className="border border-gray-300 w-full h-80 object-cover rounded"
                         />
                         <div className="flex gap-2 mt-4">
                             {[...Array(5)].map((_, i) => (
@@ -68,24 +69,24 @@ const ProductDetails = () => {
                                     key={i}
                                     src={product.image}
                                     alt="thumb"
-                                    className="w-17 object-cover rounded"
+                                    className="border border-gray-300 size-17 object-cover rounded"
                                 />
                             ))}
                         </div>
                     </div>
 
                     {/* Details */}
-                    <div className="bg-white rounded-lg p-4 space-y-2">
+                    <div className="bg-white rounded-lg p-4 space-y-4">
                         <h1 className="text-xl font-semibold">{product.name}</h1>
                         <div className={`${product.stock > 0 ? "text-green-600" : "text-red-600"} font-medium`}>
                             {product.stock > 0 ? "In stock" : "Out of stock"}
                         </div>
-                        <div className="text-sm text-gray-700">
-                            <div className="text-orange-600 font-bold text-lg">${product.price}</div>
-                            <strong>Stock:</strong> {product.stock || "Out of stock"} <br />
-                            <strong>Category:</strong> {product.category?.name || "N/A"} <br />
-                            <strong>Description:</strong> {product.description || "No details available"}
-                        </div>
+                        <div className="text-orange-600 font-bold text-xl">Rs.{product.price}</div>
+                        <div className="text-yellow-500">⭐⭐⭐⭐ 4.5</div>
+                        <div className="text-gray-500">(12K sold)</div>
+                        <div><strong>Stock:</strong> {product.stock || "Out of stock"} left</div>
+                        <div><strong>Warranty:</strong> 1 year</div>
+                        <div><strong>Category:</strong> {product.category?.name || "N/A"}</div>
                     </div>
                 </div>
 
@@ -136,8 +137,8 @@ const ProductDetails = () => {
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`pb-2 text-sm md:text-base font-medium ${activeTab === tab
-                                        ? "text-blue-600 border-b-2 border-blue-500"
-                                        : "text-gray-600 hover:text-blue-600"
+                                    ? "text-blue-600 border-b-2 border-blue-500"
+                                    : "text-gray-600 hover:text-blue-600"
                                     }`}
                             >
                                 {tab}
@@ -147,6 +148,9 @@ const ProductDetails = () => {
                     <div className="mt-4">{renderContent()}</div>
                 </div>
             </div>
+
+            {/* Deals */}
+            <DealsGrid />
 
             {/* Promotion Banner */}
             <PromotionBanner />
