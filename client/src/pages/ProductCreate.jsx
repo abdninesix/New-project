@@ -17,8 +17,10 @@ const ProductCreate = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState('');
+  const [editCategoryId, setEditCategoryId] = useState(null);
 
   const [products, setProducts] = useState([]);
+  const [editProductId, setEditProductId] = useState(null);
 
   // Fetch categories
   const fetchCategories = async () => {
@@ -57,7 +59,7 @@ const ProductCreate = () => {
     }
   };
 
-  // Create product
+  // Create or Update product
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
     try {
@@ -66,30 +68,42 @@ const ProductCreate = () => {
         data.append(key, key === 'price' || key === 'stock' ? Number(value) : value);
       });
 
-      await API.post('/products', data);
-      toast.success('Product created successfully!');
+      if (editProductId) {
+        await API.put(`/products/${editProductId}`, data);
+        toast.success('Product updated successfully!');
+        setEditProductId(null);
+      } else {
+        await API.post('/products', data);
+        toast.success('Product created successfully!');
+      }
 
       setFormData({ name: '', price: '', stock: '', category: '', description: '', image: null });
       setImagePreview(null);
       e.target.reset();
-      fetchProducts(); // refresh product list
+      fetchProducts();
     } catch (err) {
       console.error(err.response?.data || err.message);
-      toast.error('Failed to create product.');
+      toast.error('Failed to save product.');
     }
   };
 
-  // Create category
+  // Create or Update category
   const handleSubmitCategory = async (e) => {
     e.preventDefault();
     try {
-      await API.post('/categories', { name: categoryName });
-      toast.success('Category created successfully!');
+      if (editCategoryId) {
+        await API.put(`/categories/${editCategoryId}`, { name: categoryName });
+        toast.success('Category updated successfully!');
+        setEditCategoryId(null);
+      } else {
+        await API.post('/categories', { name: categoryName });
+        toast.success('Category created successfully!');
+      }
       setCategoryName('');
       fetchCategories();
     } catch (err) {
       console.error(err.response?.data || err.message);
-      toast.error('Failed to create category.');
+      toast.error('Failed to save category.');
     }
   };
 
@@ -106,28 +120,59 @@ const ProductCreate = () => {
     }
   };
 
+  // Delete category
+  const handleDeleteCategory = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this category?')) return;
+    try {
+      await API.delete(`/categories/${id}`);
+      toast.success('Category deleted successfully!');
+      fetchCategories();
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      toast.error('Failed to delete category.');
+    }
+  };
+
+  // Edit product
+  const handleEditProduct = (product) => {
+    setEditProductId(product._id);
+    setFormData({
+      name: product.name,
+      price: product.price,
+      stock: product.stock,
+      category: product.category?._id || '',
+      description: product.description,
+      image: null,
+    });
+    setImagePreview(product.image);
+    setActiveTab('product');
+  };
+
+  // Edit category
+  const handleEditCategory = (category) => {
+    setEditCategoryId(category._id);
+    setCategoryName(category.name);
+    setActiveTab('category');
+  };
+
   return (
     <div className='min-h-[70vh] mb-8'>
       <div className="max-w-3xl mx-auto mt-8 p-6 bg-white rounded shadow-md">
+
+        <h1 className="text-3xl font-bold mb-4 mt-4 text-center">Admin Panel</h1>
         
         {/* Tab Switcher */}
         <div className="flex mb-6 border-b">
-          <button
-            onClick={() => setActiveTab('product')}
-            className={`flex-1 py-2 ${activeTab === 'product' ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-500'}`}
-          >
-            Add Product
+          <button onClick={() => setActiveTab('product')}
+            className={`flex-1 py-2 cursor-pointer ${activeTab === 'product' ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-500'}`}>
+            {editProductId ? 'Edit Product' : 'Add Product'}
           </button>
-          <button
-            onClick={() => setActiveTab('category')}
-            className={`flex-1 py-2 ${activeTab === 'category' ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-500'}`}
-          >
-            Add Category
+          <button onClick={() => setActiveTab('category')}
+            className={`flex-1 py-2 cursor-pointer ${activeTab === 'category' ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-500'}`}>
+            {editCategoryId ? 'Edit Category' : 'Add Category'}
           </button>
-          <button
-            onClick={() => setActiveTab('list')}
-            className={`flex-1 py-2 ${activeTab === 'list' ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-500'}`}
-          >
+          <button onClick={() => setActiveTab('list')}
+            className={`flex-1 py-2 cursor-pointer ${activeTab === 'list' ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-500'}`}>
             Product List
           </button>
         </div>
@@ -137,18 +182,17 @@ const ProductCreate = () => {
           <form onSubmit={handleSubmitProduct} className="space-y-4">
             <input type="text" name="name" placeholder="Product Name"
               className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              onChange={handleChange} required />
+              value={formData.name} onChange={handleChange} required />
             <input type="number" name="price" placeholder="Price"
               className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              onChange={handleChange} required />
+              value={formData.price} onChange={handleChange} required />
             <input type="number" name="stock" placeholder="Stock"
               className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              onChange={handleChange} required />
+              value={formData.stock} onChange={handleChange} required />
 
-            {/* Category Dropdown */}
             <select name="category"
               className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              onChange={handleChange} required>
+              value={formData.category} onChange={handleChange} required>
               <option value="">Select Category</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>{category.name}</option>
@@ -157,11 +201,11 @@ const ProductCreate = () => {
 
             <textarea name="description" placeholder="Description"
               className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              onChange={handleChange} required />
+              value={formData.description} onChange={handleChange} required />
 
             <input type="file" name="image" accept="image/*"
               className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              onChange={handleChange} required />
+              onChange={handleChange} />
 
             {imagePreview && (
               <img src={imagePreview} alt="Preview"
@@ -170,24 +214,55 @@ const ProductCreate = () => {
 
             <button type="submit"
               className="bg-blue-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-blue-700">
-              Create Product
+              {editProductId ? 'Update Product' : 'Create Product'}
             </button>
           </form>
         )}
 
-        {/* Category Form */}
+        {/* Category Form & List */}
         {activeTab === 'category' && (
-          <form onSubmit={handleSubmitCategory} className="space-y-4">
-            <input type="text" value={categoryName}
-              onChange={(e) => setCategoryName(e.target.value)}
-              placeholder="Category Name"
-              className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
-              required />
-            <button type="submit"
-              className="bg-green-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-green-700">
-              Add Category
-            </button>
-          </form>
+          <div className="space-y-4">
+            <form onSubmit={handleSubmitCategory} className="space-y-4">
+              <input type="text" value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+                placeholder="Category Name"
+                className="w-full p-2 border border-gray-300 outline-blue-500 rounded"
+                required />
+              <button type="submit"
+                className="bg-green-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-green-700">
+                {editCategoryId ? 'Update Category' : 'Add Category'}
+              </button>
+            </form>
+
+            <div className="mt-6">
+              {categories.length === 0 ? (
+                <p className="text-center text-gray-500">No categories available.</p>
+              ) : (
+                <ul className="divide-y divide-gray-200">
+                  <h1 className='text-lg mb-2 font-semibold'>Category List</h1>
+                  {categories.map((cat) => (
+                    <li key={cat._id} className="flex items-center justify-between py-2">
+                      <span>{cat.name}</span>
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => handleEditCategory(cat)}
+                          className="text-blue-600 hover:underline text-sm cursor-pointer"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCategory(cat._id)}
+                          className="text-red-600 hover:underline text-sm cursor-pointer"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
         )}
 
         {/* Product List Tab */}
@@ -204,11 +279,20 @@ const ProductCreate = () => {
                         className="w-16 h-16 object-cover rounded" />
                       <span className="font-medium">{product.name}</span>
                     </div>
-                    <button
-                      onClick={() => handleDeleteProduct(product._id)}
-                      className="text-red-600 hover:underline cursor-pointer text-sm">
-                      Delete
-                    </button>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => handleEditProduct(product)}
+                        className="text-blue-600 hover:underline text-sm cursor-pointer"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteProduct(product._id)}
+                        className="text-red-600 hover:underline text-sm cursor-pointer"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>

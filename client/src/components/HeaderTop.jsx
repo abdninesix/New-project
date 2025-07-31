@@ -1,4 +1,4 @@
-import { User, MessageCircle, Heart, ShoppingCart, ShoppingBag, FilesIcon } from "lucide-react";
+import { User, MessageCircle, Heart, ShoppingCart, ShoppingBag, FilesIcon, LayoutDashboard } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
@@ -89,9 +89,9 @@ const HeaderTop = () => {
 
       {/* Icons Section */}
       <div className="flex items-center gap-6 text-gray-700">
-        <Link to="/manage" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
-          <FilesIcon className="w-5 h-5" />
-          <span className="text-xs">Manage</span>
+        <Link to="/dashboard" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+          <LayoutDashboard className="w-5 h-5" />
+          <span className="text-xs">Admin Panel</span>
         </Link>
         <div className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
           <User className="w-5 h-5" />

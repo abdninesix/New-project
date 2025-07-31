@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "../api/axios";
 import DealsGrid from "../components/DealsGrid";
+import { toast } from "react-toastify";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
@@ -28,6 +29,24 @@ const ProductDetails = () => {
 
         fetchProduct();
     }, [id]);
+
+    // Handle Add to Cart
+    const handleAddToCart = () => {
+        if (!product) return;
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if product is already in cart
+        const existing = cart.find((item) => item._id === product._id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success(`${product.name} added to cart!`);
+    };
 
     const renderContent = () => {
         switch (activeTab) {
@@ -87,6 +106,16 @@ const ProductDetails = () => {
                         <div><strong>Stock:</strong> {product.stock || "Out of stock"} left</div>
                         <div><strong>Warranty:</strong> 1 year</div>
                         <div><strong>Category:</strong> {product.category?.name || "N/A"}</div>
+
+                        {/* Add to Cart Button */}
+                        {product.stock > 0 && (
+                            <button
+                                onClick={handleAddToCart}
+                                className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full cursor-pointer"
+                            >
+                                Add to Cart
+                            </button>
+                        )}
                     </div>
                 </div>
 
@@ -136,10 +165,11 @@ const ProductDetails = () => {
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`pb-2 text-sm md:text-base font-medium ${activeTab === tab
-                                    ? "text-blue-600 border-b-2 border-blue-500"
-                                    : "text-gray-600 hover:text-blue-600"
-                                    }`}
+                                className={`pb-2 text-sm md:text-base font-medium ${
+                                    activeTab === tab
+                                        ? "text-blue-600 border-b-2 border-blue-500"
+                                        : "text-gray-600 hover:text-blue-600"
+                                }`}
                             >
                                 {tab}
                             </button>
