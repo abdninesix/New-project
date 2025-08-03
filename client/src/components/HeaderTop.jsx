@@ -1,6 +1,15 @@
-import { User, MessageCircle, Heart, ShoppingCart, ShoppingBag, FilesIcon, LayoutDashboard } from "lucide-react";
+import {
+  User,
+  MessageCircle,
+  Heart,
+  ShoppingCart,
+  ShoppingBag,
+  LayoutDashboard,
+  LogOut,
+  LogIn
+} from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 
 const HeaderTop = () => {
@@ -8,6 +17,26 @@ const HeaderTop = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
+
+  // Load logged-in user from localStorage
+  useEffect(() => {
+    const updateUser = () => {
+      const storedUser = localStorage.getItem("user");
+      setUser(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null);
+    };
+
+    // On mount
+    updateUser();
+
+    // Listen for custom events
+    window.addEventListener("userChange", updateUser);
+
+    return () => window.removeEventListener("userChange", updateUser);
+  }, []);
+
 
   // Debounce search
   useEffect(() => {
@@ -18,7 +47,7 @@ const HeaderTop = () => {
         setSearchResults([]);
         setShowDropdown(false);
       }
-    }, 2000); // 2000ms debounce
+    }, 2000);
 
     return () => clearTimeout(delayDebounce);
   }, [searchQuery]);
@@ -31,6 +60,13 @@ const HeaderTop = () => {
     } catch (err) {
       console.error("Search failed:", err);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/login");
   };
 
   return (
@@ -49,7 +85,7 @@ const HeaderTop = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => searchResults.length && setShowDropdown(true)}
-          onBlur={() => setTimeout(() => setShowDropdown(false), 200)} // Delay to allow clicking
+          onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
         />
         <select
           value={category}
@@ -89,14 +125,35 @@ const HeaderTop = () => {
 
       {/* Icons Section */}
       <div className="flex items-center gap-6 text-gray-700">
-        <Link to="/dashboard" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
-          <LayoutDashboard className="w-5 h-5" />
-          <span className="text-xs">Admin Panel</span>
-        </Link>
-        <div className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
-          <User className="w-5 h-5" />
-          <span className="text-xs">Profile</span>
-        </div>
+        {user?.role === "admin" && (
+          <Link to="/dashboard" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+            <LayoutDashboard className="w-5 h-5" />
+            <span className="text-xs">Admin Panel</span>
+          </Link>
+        )}
+
+        {user ? (
+          <>
+            {/* Profile */}
+            <div
+              onClick={handleLogout}
+              className="flex flex-col items-center hover:text-red-600 cursor-pointer"
+            >
+              <LogOut className="w-5 h-5" />
+              <span className="text-xs">Logout</span>
+            </div>
+            <Link to="/profile" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+              <User className="w-5 h-5" />
+              <span className="text-xs">Profile</span>
+            </Link>
+          </>
+        ) : (
+          <Link to="/login" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+            <LogIn className="w-5 h-5" />
+            <span className="text-xs">Login</span>
+          </Link>
+        )}
+
         <div className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
           <MessageCircle className="w-5 h-5" />
           <span className="text-xs">Message</span>
