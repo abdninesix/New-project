@@ -77,7 +77,7 @@ const HeaderTop = () => {
       </Link>
 
       {/* Search Bar + Category */}
-      <div className="flex-1 flex items-center max-w-3xl border border-blue-500 rounded-md relative">
+      <div className="flex-1 flex items-center max-w-3xl border-2 border-blue-500 rounded-md relative">
         <input
           type="text"
           placeholder="Search products..."
@@ -90,14 +90,14 @@ const HeaderTop = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border-x border-gray-300 px-3 py-2 focus:outline-none"
+          className="border-l-2 border-blue-500 px-3 py-2 focus:outline-none"
         >
           <option value="all">All category</option>
           <option value="electronics">Electronics</option>
           <option value="home">Home</option>
           <option value="fashion">Fashion</option>
         </select>
-        <button className="bg-blue-600 text-white px-4 py-3 rounded-r-md hover:bg-blue-700">
+        <button className="bg-blue-600 text-white px-4 py-3 cursor-pointer hover:bg-blue-700">
           Search
         </button>
 

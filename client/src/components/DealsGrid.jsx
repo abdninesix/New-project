@@ -20,9 +20,9 @@ const DealsGrid = () => {
   }, []);
 
   return (
-    <section className="px-4 py-6 bg-sky-50 mb-10">
-      <div className="mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">Flash Deals</h2>
+    <section className="px-4 py-6 bg-[#F7FAFC] mb-10">
+      <div className="mx-auto">
+        <h2 className="text-3xl font-bold mb-6">Recommended items</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {products.map((product) => (
             <div

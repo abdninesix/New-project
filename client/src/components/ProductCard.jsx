@@ -47,23 +47,22 @@ const ProductCard = ({ product, viewMode }) => {
         className="w-48 h-32 object-cover rounded-md"
       />
       <div className="flex flex-col justify-between flex-1">
-        <div>
-          <h2 className="text-xl font-semibold">{name}</h2>
-          <p className="text-gray-700 text-sm mt-1 line-clamp-2">
-            {description || "No description available."}
-          </p>
-          <p className="text-gray-500 text-xs mt-1">
-            Category: {category?.name || "N/A"} | Stock: {stock ?? 0}
-          </p>
+        <div className="flex justify-between">
+          <h2 className="text-lg font-semibold">{name}</h2>
+          <Heart className="cursor-pointer text-gray-500 hover:fill-red-500" />
         </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-4 text-sm">
-          <span className="text-blue-600 font-bold">Rs.{price}</span>
+          <span className="text-xl font-semibold">Rs.{price}</span>
           <span className="text-yellow-500">⭐⭐⭐⭐ 4.5</span>
           <span className="text-gray-500">(12K sold)</span>
-          <Heart className="cursor-pointer text-gray-600 hover:text-red-500" />
         </div>
-
+        <p className="text-gray-700 text-sm mt-1 line-clamp-2">
+          {description || "No description available."}
+        </p>
+        <p className="text-gray-500 text-xs mt-1">
+          Category: {category?.name || "N/A"} | Stock: {stock ?? 0}
+        </p>
         <Link
           to={`/products/${product._id}`}
           className="w-fit hover:underline text-blue-500 font-semibold mt-2 text-sm"

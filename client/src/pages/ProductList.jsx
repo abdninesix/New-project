@@ -11,6 +11,7 @@ const ProductList = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [sort, setSort] = useState("relevance");
     const [viewMode, setViewMode] = useState("grid");
+    const [verifiedOnly, setVerifiedOnly] = useState(false);
 
     // Fetch products from backend
     useEffect(() => {
@@ -39,7 +40,7 @@ const ProductList = () => {
 
     return (
         <>
-            <div className="min-h-screen px-4 bg-sky-50 text-gray-900">
+            <div className="min-h-screen px-4 bg-bg-[#F7FAFC] text-gray-900">
                 <div className="mx-auto py-6">
                     <Breadcrumbs />
 
@@ -59,10 +60,20 @@ const ProductList = () => {
                                 </div>
 
                                 <div className="flex items-center gap-4">
+                                    <label className="flex items-center gap-2 text-sm cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={verifiedOnly}
+                                            onChange={() => setVerifiedOnly(!verifiedOnly)}
+                                            className="accent-blue-500"
+                                        />
+                                        Verified Only
+                                    </label>
+
                                     <select
                                         value={sort}
                                         onChange={(e) => setSort(e.target.value)}
-                                        className="rounded-md text-sm"
+                                        className="rounded-md text-sm px-3 py-1 outline-none border border-gray-300"
                                     >
                                         <option value="relevance">Sort by: Relevance</option>
                                         <option value="latest">Sort by: Latest</option>
@@ -70,7 +81,7 @@ const ProductList = () => {
                                         <option value="price-high">Price: High to Low</option>
                                     </select>
 
-                                    <div className="flex justify-end gap-2 mb-4">
+                                    <div className="flex gap-2">
                                         <button
                                             onClick={() => setViewMode("grid")}
                                             className={`p-2 rounded ${viewMode === "grid" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
@@ -90,8 +101,8 @@ const ProductList = () => {
                             {/* Product list */}
                             <div
                                 className={`${viewMode === "grid"
-                                        ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
-                                        : "flex flex-col gap-6"
+                                    ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+                                    : "flex flex-col gap-6"
                                     }`}
                             >
                                 {filteredProducts.map((product) => (

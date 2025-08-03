@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <DealsGrid />
       <SendQuote />
+      <DealsGrid />
       <ExtraServices />
       <SuppliersRegion />
       <Newsletter />
