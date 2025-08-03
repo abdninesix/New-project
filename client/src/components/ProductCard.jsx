@@ -7,11 +7,11 @@ const ProductCard = ({ product, viewMode }) => {
   // Grid View Card
   if (viewMode === "grid") {
     return (
-      <div className="bg-white rounded-lg border border-gray-300 p-4 w-full sm:w-[250px] flex flex-col">
+      <div className="bg-white rounded-lg border border-gray-300 p-4 w-full sm:w-[350px] flex flex-col">
         <img
           src={image}
           alt={name}
-          className="w-full h-40 object-cover rounded-md mb-2"
+          className="w-full h-80 object-cover rounded-md mb-2"
         />
         <div className="flex-1 flex flex-col justify-between">
           <h2 className="text-lg font-semibold line-clamp-1">{name}</h2>

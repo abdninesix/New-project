@@ -40,7 +40,7 @@ const ProductList = () => {
 
     return (
         <>
-            <div className="min-h-screen px-4 bg-bg-[#F7FAFC] text-gray-900">
+            <div className="min-h-screen px-4 bg-[#F7FAFC] text-gray-900">
                 <div className="mx-auto py-6">
                     <Breadcrumbs />
 
@@ -101,11 +101,11 @@ const ProductList = () => {
                             {/* Product list */}
                             <div
                                 className={`${viewMode === "grid"
-                                    ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+                                    ? "grid grid-cols-2 md:grid-cols-3 gap-6"
                                     : "flex flex-col gap-6"
                                     }`}
                             >
-                                {filteredProducts.map((product) => (
+                                {filteredProducts.slice(0, viewMode === "grid" ? 9 : 6).map((product) => (
                                     <ProductCard key={product._id} product={product} viewMode={viewMode} />
                                 ))}
                             </div>
