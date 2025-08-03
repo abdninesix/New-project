@@ -62,7 +62,7 @@ const Cart = () => {
     );
 
     return (
-        <div className="p-4 mx-auto bg-sky-50">
+        <div className="p-4 mx-auto bg-[#F7FAFC]">
             <h1 className="text-2xl font-bold mb-4">My Cart</h1>
 
             {/* CART SECTION */}

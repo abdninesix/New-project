@@ -12,6 +12,7 @@ const ProductList = () => {
     const [sort, setSort] = useState("relevance");
     const [viewMode, setViewMode] = useState("grid");
     const [verifiedOnly, setVerifiedOnly] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
 
     // Fetch products from backend
     useEffect(() => {
@@ -34,9 +35,16 @@ const ProductList = () => {
                 const categoryId =
                     typeof p.category === "object" ? p.category._id : p.category;
                 return selectedCategories.includes(categoryId?.toString());
-            })
-            : products;
+            }) : products;
 
+    const itemsPerPage = viewMode === "grid" ? 9 : 6;
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+    // Calculate paginated products
+    const paginatedProducts = filteredProducts.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     return (
         <>
@@ -44,7 +52,7 @@ const ProductList = () => {
                 <div className="mx-auto py-6">
                     <Breadcrumbs />
 
-                    <div className="flex flex-col lg:flex-row gap-6 mt-6">
+                    <div className="flex flex-col lg:flex-row gap-6 mt-8 mb-8">
                         {/* Sidebar with callback */}
                         <FilterSidebar
                             selectedCategories={selectedCategories}
@@ -56,7 +64,7 @@ const ProductList = () => {
                             {/* Sort & Controls */}
                             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-2 border border-gray-300 rounded-lg bg-white">
                                 <div className="text-gray-700 text-sm">
-                                    Showing <strong>{filteredProducts.length}</strong> products
+                                    Showing <strong>{paginatedProducts.length}</strong> out of <strong>{filteredProducts.length}</strong> products
                                 </div>
 
                                 <div className="flex items-center gap-4">
@@ -105,12 +113,35 @@ const ProductList = () => {
                                     : "flex flex-col gap-6"
                                     }`}
                             >
-                                {filteredProducts.slice(0, viewMode === "grid" ? 9 : 6).map((product) => (
+                                {paginatedProducts.map((product) => (
                                     <ProductCard key={product._id} product={product} viewMode={viewMode} />
                                 ))}
                             </div>
                         </div>
                     </div>
+                    {/* Pagination component */}
+                    <div className="flex justify-end">
+                        <button
+                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 bg-gray-200 rounded-full cursor-pointer disabled:hidden"
+                        >
+                            {"<"}
+                        </button>
+
+                        <span className="px-4 py-2">
+                            {currentPage} of {totalPages}
+                        </span>
+
+                        <button
+                            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 bg-gray-200 rounded-full cursor-pointer disabled:hidden"
+                        >
+                            {">"}
+                        </button>
+                    </div>
+
                 </div>
             </div>
             <Newsletter />

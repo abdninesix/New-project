@@ -156,7 +156,7 @@ const ProductCreate = () => {
   };
 
   return (
-    <div className='min-h-[70vh] mb-8'>
+    <div className='min-h-[70vh] py-8 bg-[#F7FAFC]'>
       <div className="max-w-3xl mx-auto mt-8 p-6 bg-white rounded shadow-md">
 
         <h1 className="text-3xl font-bold mb-4 mt-4 text-center">Admin Panel</h1>

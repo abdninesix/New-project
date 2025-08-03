@@ -32,7 +32,7 @@ const MainNavbar = () => {
         </button>
 
         {/* Ship to */}
-        <button className="flex items-center gap-1 hover:text-blue-600">
+        <button htmlFor="selector" className="flex items-center gap-1 hover:text-blue-600">
           <span>🇵🇰</span>
           <span>Ship to</span>
           <ChevronDown className="w-4 h-4" />

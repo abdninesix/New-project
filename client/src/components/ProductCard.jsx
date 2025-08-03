@@ -19,7 +19,7 @@ const ProductCard = ({ product, viewMode }) => {
             Category: {category?.name || "N/A"} | Stock: {stock ?? 0}
           </p>
           <div className="flex flex-wrap items-center gap-2 text-sm mt-2">
-            <span className="text-blue-600 font-bold">Rs.{price}</span>
+            <span className="text-xl font-bold">Rs.{price}</span>
             <span className="text-yellow-500">⭐⭐⭐⭐ 4.5</span>
             <span className="text-gray-500">(12K sold)</span>
           </div>

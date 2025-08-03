@@ -45,7 +45,7 @@ const ProductDetails = () => {
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-        toast.success(`${product.name} added to cart!`);
+        toast.success(`Item added to cart!`);
     };
 
     const renderContent = () => {
@@ -67,7 +67,7 @@ const ProductDetails = () => {
     if (!product) return <div className="p-10 text-center text-red-500">Product not found.</div>;
 
     return (
-        <div className="bg-sky-50 text-gray-900">
+        <div className="bg-[#F7FAFC] text-gray-900">
             {/* Breadcrumbs */}
             <Breadcrumbs />
 

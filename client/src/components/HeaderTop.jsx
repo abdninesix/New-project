@@ -72,8 +72,8 @@ const HeaderTop = () => {
   return (
     <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between gap-4 text-sm relative">
       {/* Logo */}
-      <Link to="/" className="text-3xl font-extrabold text-blue-400 flex items-center gap-2">
-        <ShoppingBag /><span>Brand</span>
+      <Link to="/" className="text-3xl font-bold text-blue-400 flex items-center gap-2">
+        <ShoppingBag className="shadow-[5px_0px_0px] shadow-blue-400 size-10 bg-blue-500 rounded-lg p-2 text-white" /><span>Brand</span>
       </Link>
 
       {/* Search Bar + Category */}
