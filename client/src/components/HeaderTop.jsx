@@ -70,7 +70,7 @@ const HeaderTop = () => {
   };
 
   return (
-    <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between gap-4 text-sm relative">
+    <div className="px-4 md:px-8 lg:px-16 xl:px-32 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between gap-4 text-sm relative">
       {/* Logo */}
       <Link to="/" className="text-3xl font-bold text-blue-400 flex items-center gap-2">
         <ShoppingBag className="shadow-[5px_0px_0px] shadow-blue-400 size-10 bg-blue-500 rounded-lg p-2 text-white" /><span>Brand</span>
@@ -81,7 +81,7 @@ const HeaderTop = () => {
         <input
           type="text"
           placeholder="Search products..."
-          className="w-full px-3 py-3 rounded-l-md focus:outline-none"
+          className="w-full p-3 focus:outline-none"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => searchResults.length && setShowDropdown(true)}
@@ -90,14 +90,14 @@ const HeaderTop = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border-l-2 border-blue-500 px-3 py-2 focus:outline-none"
+          className="border-l-2 border-blue-500 p-2 focus:outline-none"
         >
           <option value="all">All category</option>
           <option value="electronics">Electronics</option>
           <option value="home">Home</option>
           <option value="fashion">Fashion</option>
         </select>
-        <button className="bg-blue-600 text-white px-4 py-3 cursor-pointer hover:bg-blue-700">
+        <button className="bg-blue-500 text-white px-4 py-3 cursor-pointer hover:bg-blue-600">
           Search
         </button>
 

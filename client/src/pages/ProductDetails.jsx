@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import DealsGrid from "../components/DealsGrid";
 import { toast } from "react-toastify";
+import { Check, CheckIcon, CheckSquare, Globe, PinIcon } from "lucide-react";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
@@ -28,6 +29,7 @@ const ProductDetails = () => {
         };
 
         fetchProduct();
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }, [id]);
 
     // Handle Add to Cart
@@ -67,20 +69,20 @@ const ProductDetails = () => {
     if (!product) return <div className="p-10 text-center text-red-500">Product not found.</div>;
 
     return (
-        <div className="bg-[#F7FAFC] text-gray-900">
+        <div className="bg-[#F7FAFC] text-gray-900 pb-8 px-4 md:px-8 lg:px-16 xl:px-32">
             {/* Breadcrumbs */}
             <Breadcrumbs />
 
             {/* Main Product Section */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="bg-white grid grid-cols-1 lg:grid-cols-12 gap-6 rounded-lg border border-gray-300">
                 {/* Left: Product Info */}
-                <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 ">
                     {/* Product Image */}
-                    <div className="bg-white rounded-lg p-4 flex flex-col justify-center items-center">
+                    <div className="p-4 flex flex-col justify-center items-center">
                         <img
                             src={product.image}
                             alt={product.name}
-                            className="border border-gray-300 w-full h-80 object-cover rounded"
+                            className="h-96 object-cover"
                         />
                         <div className="flex gap-2 mt-4">
                             {[...Array(5)].map((_, i) => (
@@ -95,7 +97,7 @@ const ProductDetails = () => {
                     </div>
 
                     {/* Details */}
-                    <div className="bg-white rounded-lg p-4 space-y-4">
+                    <div className="p-4 space-y-4">
                         <h1 className="text-xl font-semibold">{product.name}</h1>
                         <div className={`${product.stock > 0 ? "text-green-600" : "text-red-600"} font-medium`}>
                             {product.stock > 0 ? "In stock" : "Out of stock"}
@@ -120,65 +122,64 @@ const ProductDetails = () => {
                 </div>
 
                 {/* Right: Supplier Info */}
-                <div className="lg:col-span-4 space-y-6">
-                    <div className="bg-white p-4 rounded-lg">
-                        <div className="flex items-center gap-4">
-                            <div className="bg-gray-200 size-10 rounded">R</div>
-                            <div>
-                                <p className="font-semibold">Supplier Trading LLC</p>
-                                <p className="text-sm text-gray-500">Germany, Berlin</p>
-                                <p className="text-xs text-green-600">Verified Seller</p>
-                            </div>
-                        </div>
-                        <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full cursor-pointer">
-                            Send Inquiry
-                        </button>
-                        <button className="mt-2 text-blue-600 text-sm w-full cursor-pointer hover:underline">
-                            Seller's profile
-                        </button>
+                <div className="lg:col-span-3 h-2/3 bg-white p-4 rounded-lg border border-gray-300 mt-8">
+                    <div className="flex items-center gap-4">
+                        <div className="bg-sky-50 size-10 text-2xl text-center rounded">R</div>
+                        <p className="font-semibold">Supplier Trading LLC</p>
                     </div>
-
-                    <div className="bg-white p-4 rounded-lg">
-                        <h3 className="font-medium mb-2">You may like</h3>
-                        <ul className="space-y-2 text-sm">
-                            {[
-                                "Men Blazers Sets Elegant Formal",
-                                "Men Shirt Sleeve Polo Contrast",
-                                "Apple Watch Series Space Gray",
-                                "Basketball Crew Socks Long Stuff",
-                                "New Summer Men's castrol T-Shirts",
-                            ].map((item, index) => (
-                                <li key={index} className="text-blue-600">
-                                    {item} <span className="text-gray-500">$7.00 - $99.50</span>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="text-gray-400 space-y-2 mt-5">
+                        <p className="flex items-center gap-4"><PinIcon />Germany, Berlin</p>
+                        <p className="flex items-center gap-4"> <CheckSquare />Verified Seller</p>
+                        <p className="flex items-center gap-4"><Globe />Worldwide Shipping</p>
                     </div>
+                    <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded w-full cursor-pointer">
+                        Send Inquiry
+                    </button>
+                    <button className="mt-4 bg-white hover:bg-gray-50 border border-gray-300 text-blue-500 px-4 py-2 rounded w-full cursor-pointer">
+                        Seller's profile
+                    </button>
                 </div>
             </div>
 
             {/* Tabs Section */}
-            <div className="max-w-7xl mx-auto px-4 py-6 bg-white rounded-lg mt-8 mb-8">
-                <div className="mt-8">
-                    <div className="flex gap-6">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`pb-2 text-sm md:text-base font-medium ${
-                                    activeTab === tab
+            <div className="grid grid-cols-4 gap-8 mt-8">
+                <div className="h-full col-span-3 p-4 bg-white rounded-lg border border-gray-300">
+                    <div>
+                        <div className="flex gap-6">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`pb-2 text-sm md:text-base font-medium ${activeTab === tab
                                         ? "text-blue-600 border-b-2 border-blue-500"
                                         : "text-gray-600 hover:text-blue-600"
-                                }`}
-                            >
-                                {tab}
-                            </button>
-                        ))}
+                                        }`}
+                                >
+                                    {tab}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="mt-4">{renderContent()}</div>
                     </div>
-                    <div className="mt-4">{renderContent()}</div>
+                </div>
+
+                <div className="h-fit bg-white col-span-1 p-4 rounded-lg border border-gray-300">
+                    <h3 className="font-medium mb-2">You may like</h3>
+                    <ul className="space-y-2 text-sm">
+                        {[
+                            "Men Blazers Sets Elegant Formal",
+                            "Men Shirt Sleeve Polo Contrast",
+                            "Apple Watch Series Space Gray",
+                            "Basketball Crew Socks Long Stuff",
+                            "New Summer Men's castrol T-Shirts",
+                        ].map((item, index) => (
+                            <li key={index} className="text-blue-600">
+                                {item} <span className="text-gray-500">$7.00 - $99.50</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
-
             {/* Deals */}
             <DealsGrid />
 

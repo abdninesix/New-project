@@ -62,8 +62,8 @@ const Cart = () => {
     );
 
     return (
-        <div className="p-4 mx-auto bg-[#F7FAFC]">
-            <h1 className="text-2xl font-bold mb-4">My Cart</h1>
+        <div className="py-8 px-4 md:px-8 lg:px-16 xl:px-32 mx-auto bg-[#F7FAFC]">
+            <h1 className="text-2xl font-bold mb-4">My Cart ({cartItems.length})</h1>
 
             {/* CART SECTION */}
             <div className="min-h-[50vh] flex flex-col lg:flex-row gap-6">
@@ -150,8 +150,8 @@ const Cart = () => {
 
             {/* SAVED FOR LATER */}
             {savedItems.length > 0 && (
-                <div className="mt-8 mb-8">
-                    <h2 className="text-xl font-semibold mb-4">Saved for Later</h2>
+                <div className="mt-8 mb-8 bg-white p-6 rounded-xl border border-gray-300">
+                    <h2 className="text-3xl font-bold mb-4">Saved for Later</h2>
                     <div className="flex flex-wrap gap-6">
                         {savedItems.map((item) => (
                             <div

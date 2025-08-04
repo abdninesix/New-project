@@ -4,7 +4,7 @@ const Newsletter = () => {
     return (
         <div>
             {/* Subscribe Section */}
-            <div className="w-full bg-gray-100 py-10 px-4">
+            <div className=" bg-gray-100 py-10 w-screen relative left-1/2 right-1/2 -translate-x-1/2">
                 <div className="max-w-[1200px] mx-auto text-center md:text-left md:flex flex-col items-center justify-between gap-4">
                     <div className="mb-4 md:mb-0 text-center">
                         <h3 className="font-bold text-xl mb-1">Subscribe on our newsletter</h3>

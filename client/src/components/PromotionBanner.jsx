@@ -2,7 +2,7 @@ import React from 'react'
 
 const PromotionBanner = () => {
     return (
-        <div className="flex gap-60 justify-center items-center bg-blue-600 text-white py-6 text-center px-4 rounded-md">
+        <div className="flex gap-60 justify-between items-center bg-blue-600 text-white py-6 px-4 rounded-md">
             <div>
                 <h2 className="text-xl font-bold">Super discount on more than 100 USD</h2>
                 <p className="text-sm mt-1">Have you ever finally just write dummy info</p>

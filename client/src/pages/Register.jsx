@@ -2,10 +2,13 @@ import { useState } from "react";
 import API from "../api/axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useRedirect } from "../auth/UseRedirect";
 
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+
+  useRedirect()
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#f9f9f9] text-sm text-gray-700">
+    <footer className="bg-[#f9f9f9] text-gray-700">
 
       {/* Links + App section */}
-      <div className="bg-white py-10 px-4 text-lg">
+      <div className="bg-white py-10 text-lg px-4 md:px-8 lg:px-16 xl:px-32">
         <div className="mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mb-8">
 
           {/* Logo and socials */}
@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Row */}
-        <div className="flex items-center justify-between gap-2 bg-gray-100 text-gray-400 py-2">
+        <div className="flex items-center justify-between gap-2 bg-gray-100 text-gray-400 px-4 md:px-8 lg:px-16 xl:px-32 py-4 w-screen relative left-1/2 right-1/2 -translate-x-1/2">
           <span className="text-lg">&copy; {new Date().getFullYear()} Ecommerce.</span>
           <select
             className="rounded-md px-1 text-sm outline-none cursor-pointer hover:text-blue-500"

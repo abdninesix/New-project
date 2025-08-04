@@ -20,19 +20,19 @@ const DealsGrid = () => {
   }, []);
 
   return (
-    <section className="px-4 py-6 bg-[#F7FAFC] mb-10">
+    <section className="py-6 bg-[#F7FAFC] mb-8">
       <div className="mx-auto">
         <h2 className="text-3xl font-bold mb-6">Recommended items</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {products.map((product) => (
             <div
               key={product._id}
-              className="bg-white rounded-lg border border-gray-300 p-4 w-full sm:w-[250px] flex flex-col"
+              className="bg-white rounded-lg border border-gray-300 p-4 w-full flex flex-col"
             >
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-40 object-cover rounded-md mb-2"
+                className="w-full h-80 object-cover rounded-md mb-2"
               />
               <div className="flex-1 flex flex-col justify-between">
                 <h2 className="text-lg font-semibold line-clamp-1">{product.name}</h2>

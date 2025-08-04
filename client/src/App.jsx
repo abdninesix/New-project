@@ -15,7 +15,7 @@ import ProtectedRoute from "./auth/ProtectedRoute"
 function App() {
   return (
     <Router>
-      <div className="px-4 md:px-8 lg:px-16 xl:px-32 overflow-x-hidden">
+      <div className="overflow-x-hidden">
         <HeaderTop />
         <MainNavbar />
         <Routes>

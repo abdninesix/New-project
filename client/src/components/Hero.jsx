@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
-    <section className="bg-[#F7FAFC] px-10 py-6">
+    <section className="py-6">
       <div className="mx-auto flex justify-between gap-4 bg-white border border-gray-200 p-4 rounded-md">
         {/* Sidebar Category Links */}
         <div className="hidden w-1/3 md:grid gap-3 text-gray-700">
@@ -32,8 +34,8 @@ const Hero = () => {
         <div className="w-1/4 hidden md:flex flex-col gap-3 justify-between">
           <div className="flex flex-col bg-blue-100 rounded-xl p-4">
             <p className=" text-gray-800 font-semibold">Hi, user let's get started</p>
-            <button className="bg-blue-500 text-white hover:bg-blue-500/60 p-2 rounded-md cursor-pointer mt-4">Join now</button>
-            <button className="bg-white text-blue-500 hover:bg-white/60 p-2 rounded-md cursor-pointer mt-4">Log in</button>
+            <Link to="/register" className="bg-blue-500 text-white text-center hover:bg-blue-600 p-2 rounded-md cursor-pointer mt-4">Join now</Link>
+            <Link to="/login" className="bg-white text-blue-500 text-center hover:bg-gray-50 p-2 rounded-md cursor-pointer mt-4">Log in</Link>
           </div>
 
           <div className="bg-orange-400 text-white rounded-xl p-4">
