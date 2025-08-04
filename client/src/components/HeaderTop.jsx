@@ -76,7 +76,7 @@ const HeaderTop = () => {
       </Link>
 
       {/* Search Bar */}
-      <div className="hidden md:flex flex-1 items-center max-w-2xl border-2 border-blue-500 rounded-md relative">
+      <div className="flex flex-1 items-center max-w-2xl border-2 border-blue-500 rounded-md relative">
         <input
           type="text"
           placeholder="Search products..."
@@ -89,7 +89,7 @@ const HeaderTop = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border-l-2 border-blue-500 p-1 text-sm focus:outline-none"
+          className="hidden md:border-l-2 border-blue-500 p-1 text-sm focus:outline-none"
         >
           <option value="all">All Categories</option>
           <option value="electronics">Electronics</option>
@@ -133,7 +133,7 @@ const HeaderTop = () => {
         } md:flex flex-col md:flex-row items-center gap-6 text-gray-500 absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none py-4 md:py-0 z-50`}
       >
         {user?.role === "admin" && (
-          <Link to="/dashboard" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+          <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
             <LayoutDashboard className="w-5 h-5" />
             <span className="text-xs">Admin</span>
           </Link>
@@ -145,13 +145,13 @@ const HeaderTop = () => {
               <LogOut className="w-5 h-5" />
               <span className="text-xs">Logout</span>
             </div>
-            <Link to="/profile" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+            <Link to="/profile" onClick={() => setMenuOpen(false)} className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
               <User className="w-5 h-5" />
               <span className="text-xs">Profile</span>
             </Link>
           </>
         ) : (
-          <Link to="/login" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+          <Link to="/login" onClick={() => setMenuOpen(false)} className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
             <LogIn className="w-5 h-5" />
             <span className="text-xs">Login</span>
           </Link>
@@ -165,7 +165,7 @@ const HeaderTop = () => {
           <Heart className="w-5 h-5" />
           <span className="text-xs">Orders</span>
         </div>
-        <Link to="/cart" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
+        <Link to="/cart" onClick={() => setMenuOpen(false)} className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
           <ShoppingCart className="w-5 h-5" />
           <span className="text-xs">My cart</span>
         </Link>

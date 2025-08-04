@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import DealsGrid from "../components/DealsGrid";
 import { toast } from "react-toastify";
-import { CheckSquare, Globe, PinIcon } from "lucide-react";
+import { CheckSquare, Globe, PinIcon, ShoppingCart } from "lucide-react";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
@@ -72,12 +72,12 @@ const ProductDetails = () => {
   if (!product) return <div className="p-10 text-center text-red-500">Product not found.</div>;
 
   return (
-    <div className="bg-[#F7FAFC] text-gray-900 pb-8 px-4 md:px-8 lg:px-16 xl:px-32">
+    <div className="bg-[#F7FAFC] text-gray-900 pb-8 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
       {/* Breadcrumbs */}
       <Breadcrumbs />
 
       {/* Main Product Section */}
-      <div className="bg-white grid grid-cols-1 lg:grid-cols-12 gap-6 rounded-lg border border-gray-300">
+      <div className="bg-white grid grid-cols-1 lg:grid-cols-11 gap-6 rounded-lg border border-gray-300">
         {/* Left: Product Info */}
         <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Product Image */}
@@ -124,16 +124,16 @@ const ProductDetails = () => {
             {product.stock > 0 && (
               <button
                 onClick={handleAddToCart}
-                className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full cursor-pointer"
+                className="mt-4 flex gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
               >
-                Add to Cart
+                <ShoppingCart className="w-5 h-5"/> Add to Cart
               </button>
             )}
           </div>
         </div>
 
         {/* Right: Supplier Info */}
-        <div className="lg:col-span-4 bg-white p-4 rounded-lg border-t lg:border-t-0 lg:border-l border-gray-300 flex flex-col justify-between">
+        <div className="lg:col-span-3 h-fit bg-white p-4 rounded-lg border mt-10 mb-10 mr-10 border-gray-300 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-4">
               <div className="bg-sky-50 w-10 h-10 flex items-center justify-center text-2xl rounded">

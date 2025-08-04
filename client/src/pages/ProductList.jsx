@@ -48,7 +48,7 @@ const ProductList = () => {
 
     return (
         <>
-            <div className="min-h-screen bg-[#F7FAFC] text-gray-900 px-4 md:px-8 lg:px-16 xl:px-32">
+            <div className="min-h-screen bg-[#F7FAFC] text-gray-900 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
                 <div className="mx-auto py-6">
                     <Breadcrumbs />
 

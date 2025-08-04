@@ -62,7 +62,7 @@ const Cart = () => {
   );
 
   return (
-    <div className="py-8 px-4 md:px-8 lg:px-16 xl:px-32 mx-auto bg-[#F7FAFC]">
+    <div className="py-8 px-4 md:px-8 lg:px-16 xl:px-32 mx-auto bg-[#F7FAFC] duration-200">
       <h1 className="text-2xl font-bold mb-4">
         My Cart ({cartItems.length})
       </h1>
