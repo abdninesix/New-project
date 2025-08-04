@@ -5,8 +5,8 @@ const Hero = () => {
     <section className="py-6">
       <div className="mx-auto flex justify-between gap-4 bg-white border border-gray-200 p-4 rounded-md">
         {/* Sidebar Category Links */}
-        <div className="hidden w-1/3 md:grid gap-3 text-gray-700">
-          {["Automobiles", "Clothes", "Electronics", "Home", "Beauty", "Sports", "Machinery"].map((cat) => (
+        <div className="hidden w-1/3 md:grid text-gray-700">
+          {["Automobiles", "Clothes and wear", "Home interiors", "Computer and tech", "Tools, equipments", "Sports and outdoor", "Animal and pets", "Machinery tools", "More catergory"].map((cat) => (
             <button
               key={cat}
               className="rounded-md p-2 hover:bg-blue-50 text-left"

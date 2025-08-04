@@ -66,15 +66,15 @@ const Cart = () => {
             <h1 className="text-2xl font-bold mb-4">My Cart ({cartItems.length})</h1>
 
             {/* CART SECTION */}
-            <div className="min-h-[50vh] flex flex-col lg:flex-row gap-6">
-                <div className="flex-1">
+            <div className="min-h-[50vh] flex flex-col lg:grid grid-cols-4 gap-6">
+                <div className="flex-1 lg:col-span-3">
                     {cartItems.length === 0 ? (
                         <p className="text-gray-600 text-center">Your cart is empty.</p>
                     ) : (
                         cartItems.map((item) => (
                             <div
                                 key={item._id}
-                                className="flex items-center justify-between border border-gray-300 p-4 rounded mb-4 bg-white"
+                                className="flex items-center justify-between border border-gray-300 p-4 rounded-lg mb-4 bg-white"
                             >
                                 <div className="flex items-center gap-4">
                                     <img
@@ -122,27 +122,33 @@ const Cart = () => {
                 </div>
 
                 {/* SUMMARY SECTION */}
-                <div className="w-full lg:w-1/3 border p-4 rounded h-fit border-gray-300 bg-white">
-                    <h2 className="text-xl font-semibold mb-4">Summary</h2>
-                    <div className="flex justify-between mb-2">
-                        <span>Subtotal</span>
-                        <span>Rs.{subtotal.toFixed(2)}</span>
+                <div className="flex-1 space-y-6 lg:col-span-1">
+                    <div className="flex flex-col gap-2 p-4 rounded-lg h-fit border border-gray-300 bg-white">
+                        <span>Have a coupon?</span>
+                        <div className="flex rounded-lg border border-gray-300"><input type="text" placeholder="Add coupon" className="p-2 outline-none" /><button className="w-full p-2 border-l border-gray-300 text-blue-500 font-semibold cursor-pointer">Apply</button></div>
                     </div>
-                    <div className="flex justify-between mb-2">
-                        <span>Discount</span>
-                        <span>-Rs.0.00</span>
+                    <div className="p-4 rounded-lg h-fit border border-gray-300 bg-white">
+                        <h2 className="text-xl font-semibold mb-4">Summary</h2>
+                        <div className="flex justify-between mb-2">
+                            <span>Subtotal</span>
+                            <span>Rs.{subtotal.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between mb-2">
+                            <span>Discount</span>
+                            <span>-Rs.0.00</span>
+                        </div>
+                        <div className="flex justify-between mb-2">
+                            <span>Tax</span>
+                            <span>Rs.0.00</span>
+                        </div>
+                        <div className="flex justify-between font-semibold text-lg mt-4">
+                            <span>Total</span>
+                            <span>Rs.{subtotal.toFixed(2)}</span>
+                        </div>
+                        <button className="mt-6 cursor-pointer bg-green-500 hover:bg-green-600 text-white w-full py-2 rounded">
+                            Checkout
+                        </button>
                     </div>
-                    <div className="flex justify-between mb-2">
-                        <span>Tax</span>
-                        <span>Rs.0.00</span>
-                    </div>
-                    <div className="flex justify-between font-semibold text-lg mt-4">
-                        <span>Total</span>
-                        <span>Rs.{subtotal.toFixed(2)}</span>
-                    </div>
-                    <button className="mt-6 cursor-pointer bg-green-500 hover:bg-green-600 text-white w-full py-2 rounded">
-                        Checkout
-                    </button>
                 </div>
             </div>
 

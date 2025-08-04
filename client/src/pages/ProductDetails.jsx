@@ -1,11 +1,11 @@
 import Breadcrumbs from "../components/Breadcrumbs";
 import PromotionBanner from "../components/PromotionBanner";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "../api/axios";
 import DealsGrid from "../components/DealsGrid";
 import { toast } from "react-toastify";
-import { Check, CheckIcon, CheckSquare, Globe, PinIcon } from "lucide-react";
+import { CheckSquare, Globe, PinIcon } from "lucide-react";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
