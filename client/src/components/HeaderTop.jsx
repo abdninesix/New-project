@@ -6,7 +6,9 @@ import {
   ShoppingBag,
   LayoutDashboard,
   LogOut,
-  LogIn
+  LogIn,
+  Menu,
+  X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,6 +20,7 @@ const HeaderTop = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,15 +31,10 @@ const HeaderTop = () => {
       setUser(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null);
     };
 
-    // On mount
     updateUser();
-
-    // Listen for custom events
     window.addEventListener("userChange", updateUser);
-
     return () => window.removeEventListener("userChange", updateUser);
   }, []);
-
 
   // Debounce search
   useEffect(() => {
@@ -47,7 +45,7 @@ const HeaderTop = () => {
         setSearchResults([]);
         setShowDropdown(false);
       }
-    }, 2000);
+    }, 800);
 
     return () => clearTimeout(delayDebounce);
   }, [searchQuery]);
@@ -70,18 +68,19 @@ const HeaderTop = () => {
   };
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 xl:px-32 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between gap-4 text-sm relative">
+    <div className="px-4 md:px-8 lg:px-16 xl:px-32 bg-white border-b border-gray-200 py-3 flex items-center justify-between gap-4 text-sm relative">
       {/* Logo */}
-      <Link to="/" className="text-3xl font-bold text-blue-400 flex items-center gap-2">
-        <ShoppingBag className="shadow-[5px_0px_0px] shadow-blue-400 size-10 bg-blue-500 rounded-lg p-2 text-white" /><span>Brand</span>
+      <Link to="/" className="text-2xl md:text-3xl font-bold text-blue-400 flex items-center gap-2">
+        <ShoppingBag className="shadow-[5px_0px_0px] shadow-blue-400 size-10 bg-blue-500 rounded-lg p-2 text-white" />
+        <span>Brand</span>
       </Link>
 
-      {/* Search Bar + Category */}
-      <div className="flex-1 flex items-center max-w-3xl border-2 border-blue-500 rounded-md relative">
+      {/* Search Bar */}
+      <div className="hidden md:flex flex-1 items-center max-w-2xl border-2 border-blue-500 rounded-md relative">
         <input
           type="text"
           placeholder="Search products..."
-          className="w-full p-3 focus:outline-none"
+          className="w-full px-2 text-sm focus:outline-none"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => searchResults.length && setShowDropdown(true)}
@@ -90,18 +89,18 @@ const HeaderTop = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border-l-2 border-blue-500 p-2 focus:outline-none"
+          className="border-l-2 border-blue-500 p-1 text-sm focus:outline-none"
         >
-          <option value="all">All category</option>
+          <option value="all">All Categories</option>
           <option value="electronics">Electronics</option>
           <option value="home">Home</option>
           <option value="fashion">Fashion</option>
         </select>
-        <button className="bg-blue-500 text-white px-4 py-3 cursor-pointer hover:bg-blue-600">
+        <button className="bg-blue-500 text-white px-5 py-2 text-sm hover:bg-blue-600 cursor-pointer">
           Search
         </button>
 
-        {/* Search Suggestions Dropdown */}
+        {/* Dropdown */}
         {showDropdown && searchResults.length > 0 && (
           <div className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg mt-1 max-h-60 overflow-y-auto z-50">
             {searchResults.map((product) => (
@@ -111,11 +110,7 @@ const HeaderTop = () => {
                 className="flex items-center gap-3 p-2 hover:bg-gray-100 cursor-pointer"
                 onMouseDown={() => console.log("Clicked product:", product.name)}
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-12 h-12 object-cover rounded"
-                />
+                <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                 <span className="text-sm">{product.name}</span>
               </Link>
             ))}
@@ -123,22 +118,30 @@ const HeaderTop = () => {
         )}
       </div>
 
+      {/* Hamburger for small screens */}
+      <button
+        className="md:hidden text-gray-600 focus:outline-none"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
       {/* Icons Section */}
-      <div className="flex items-center gap-6 text-gray-700">
+      <div
+        className={`${
+          menuOpen ? "flex" : "hidden"
+        } md:flex flex-col md:flex-row items-center gap-6 text-gray-500 absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none py-4 md:py-0 z-50`}
+      >
         {user?.role === "admin" && (
           <Link to="/dashboard" className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
             <LayoutDashboard className="w-5 h-5" />
-            <span className="text-xs">Admin Panel</span>
+            <span className="text-xs">Admin</span>
           </Link>
         )}
 
         {user ? (
           <>
-            {/* Profile */}
-            <div
-              onClick={handleLogout}
-              className="flex flex-col items-center hover:text-red-600 cursor-pointer"
-            >
+            <div onClick={handleLogout} className="flex flex-col items-center hover:text-red-600 cursor-pointer">
               <LogOut className="w-5 h-5" />
               <span className="text-xs">Logout</span>
             </div>

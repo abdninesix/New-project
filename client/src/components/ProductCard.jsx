@@ -31,7 +31,7 @@ const ProductCard = ({ product, viewMode }) => {
             >
               View Details
             </Link>
-            <Heart className="cursor-pointer text-gray-600 hover:text-red-500" />
+            <Heart className="cursor-pointer text-gray-600 hover:text-red-400" />
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@ const ProductCard = ({ product, viewMode }) => {
       <div className="flex flex-col justify-between flex-1">
         <div className="flex justify-between">
           <h2 className="text-lg font-semibold">{name}</h2>
-          <Heart className="cursor-pointer text-gray-500 hover:fill-red-500" />
+          <Heart className="cursor-pointer text-gray-500 hover:text-red-400" />
         </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-4 text-sm">

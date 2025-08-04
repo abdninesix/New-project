@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { Loader2, User, Mail, Lock, LogOut, Edit3, Save, X } from "lucide-react";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // Load user from localStorage
   useEffect(() => {
@@ -34,9 +37,7 @@ const Profile = () => {
       const token = localStorage.getItem("token");
 
       const res = await API.put(`/users/${user._id}`, form, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       const updatedUser = { ...user, ...res.data };
@@ -56,7 +57,7 @@ const Profile = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    window.location.reload();
+    toast.info("Logged out successfully!");
     navigate("/login");
   };
 
@@ -69,89 +70,90 @@ const Profile = () => {
   }
 
   return (
-    <div className="h-[70vh] flex items-center justify-center bg-[#F7FAFC]">
-      <div className="w-1/3 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
-        <h1 className="text-2xl font-bold mb-6 text-center text-blue-600">
-          My Profile
-        </h1>
-
-        <div className="grid grid-cols-3 gap-4 text-gray-700">
-          {/* Role */}
-          <label className="font-semibold col-span-1">Role:</label>
-          <div className="col-span-2">
-            <span
-              className={`px-2 py-1 rounded text-white ${user.role === "admin" ? "bg-red-500" : "bg-green-500"
-                }`}
-            >
-              {user.role}
-            </span>
+    <div className="min-h-[80vh] flex items-center justify-center bg-[#F7FAFC] p-4">
+      <div className="w-full max-w-xl bg-white shadow-xl rounded-2xl border border-gray-200 p-8 relative">
+        {/* Profile Header */}
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-400 to-blue-600 flex items-center justify-center text-white text-4xl shadow-md">
+            {user.name?.charAt(0).toUpperCase() || "U"}
           </div>
+          <h1 className="mt-4 text-2xl font-bold text-gray-800">{user.name}</h1>
+          <span
+            className={`mt-1 px-3 py-1 text-xs font-medium rounded-full ${
+              user.role === "admin" ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"
+            }`}
+          >
+            {user.role === "admin" ? "Administrator" : "User"}
+          </span>
+        </div>
 
+        {/* Info Grid */}
+        <div className="space-y-4 text-gray-700">
           {/* Name */}
-          <label className="font-semibold col-span-1">Name:</label>
-          <div className="col-span-2">
+          <div className="flex items-center gap-3">
+            <User className="text-gray-400 w-5 h-5" />
             {editMode ? (
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full border p-2 rounded"
+                className="flex-1 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none"
               />
             ) : (
-              <span>{user.name}</span>
+              <span className="flex-1">{user.name}</span>
             )}
           </div>
 
           {/* Email */}
-          <label className="font-semibold col-span-1">Email:</label>
-          <div className="col-span-2">
+          <div className="flex items-center gap-3">
+            <Mail className="text-gray-400 w-5 h-5" />
             {editMode ? (
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full border p-2 rounded"
+                className="flex-1 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none"
               />
             ) : (
-              <span>{user.email}</span>
+              <span className="flex-1">{user.email}</span>
             )}
           </div>
 
           {/* Password */}
           {editMode && (
-            <>
-              <label className="font-semibold col-span-1">New Password:</label>
-              <div className="col-span-2">
-                <input
-                  type="password"
-                  name="password"
-                  value={form.password}
-                  onChange={handleChange}
-                  className="w-full border p-2 rounded"
-                  placeholder="Leave empty to keep current password"
-                />
-              </div>
-            </>
+            <div className="flex items-center gap-3">
+              <Lock className="text-gray-400 w-5 h-5" />
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="New password (optional)"
+                className="flex-1 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none"
+              />
+            </div>
           )}
         </div>
 
-        {/* Buttons */}
-        <div className="flex justify-between mt-6">
+        {/* Actions */}
+        <div className="flex justify-between mt-8">
           {editMode ? (
             <>
               <button
                 onClick={handleSave}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer"
                 disabled={loading}
+                className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg cursor-pointer"
               >
-                {loading ? "Saving..." : "Save Changes"}
+                {loading ? <Loader2 className="animate-spin w-4 h-4" /> : <Save className="w-4 h-4" />}
+                {loading ? "Saving..." : "Save"}
               </button>
               <button
                 onClick={() => setEditMode(false)}
-                className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 cursor-pointer"
+                className="flex items-center gap-1 bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-2 rounded-lg cursor-pointer"
               >
+                <X className="w-4 h-4" />
                 Cancel
               </button>
             </>
@@ -159,14 +161,16 @@ const Profile = () => {
             <>
               <button
                 onClick={() => setEditMode(true)}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer"
+                className="flex items-center gap-1 bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg cursor-pointer"
               >
-                Edit Profile
+                <Edit3 className="w-4 h-4" />
+                Edit
               </button>
               <button
                 onClick={handleLogout}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
+                className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg cursor-pointer"
               >
+                <LogOut className="w-4 h-4" />
                 Logout
               </button>
             </>
