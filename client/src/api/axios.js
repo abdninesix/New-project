@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  // baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://ecommerce-eight-xi-10.vercel.app/api',
   withCredentials: true, // optional, if using cookies
 });
 
