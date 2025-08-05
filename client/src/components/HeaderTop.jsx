@@ -133,7 +133,7 @@ const HeaderTop = () => {
       <div
         className={`${
           menuOpen ? "flex" : "hidden"
-        } md:flex flex-col md:flex-row items-center gap-6 text-gray-500 absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none py-4 md:py-0 z-50`}
+        } md:flex flex-col md:flex-row items-center gap-6 text-gray-500 absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none py-4 md:py-0 z-50 transition-all duration-300`}
       >
         {user?.role === "admin" && (
           <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="flex flex-col items-center hover:text-blue-600 cursor-pointer">
