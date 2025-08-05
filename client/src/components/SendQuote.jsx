@@ -1,7 +1,7 @@
 const SendQuote = () => {
   return (
     <section
-      className="flex flex-col lg:flex-row justify-between rounded-md mt-8 mb-8 bg-cover bg-center"
+      className="flex flex-col lg:flex-row justify-between rounded-md mb-8 bg-cover bg-center"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1488342994276-7c3bc0742042?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
