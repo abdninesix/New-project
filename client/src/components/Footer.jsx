@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="bg-[#f9f9f9] text-gray-700">
 
       {/* Links + App section */}
-      <div className="bg-white py-10 text-lg px-4 md:px-8 lg:px-16 xl:px-32">
+      <div className="bg-white mt-8 text-xl md:text-lg px-4 md:px-8 lg:px-16 xl:px-32">
         <div className="mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
 
           {/* Logo and socials */}

@@ -15,9 +15,9 @@ const regions = [
 
 const SuppliersRegion = () => {
   return (
-    <section className="py-12">
+    <section className="py-8">
       <h2 className="text-3xl font-bold mb-6">Suppliers by Region</h2>
-      <div className="grid grid-cols-3 md:grid-cols-5 gap-4 mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mx-auto">
         {regions.map((region) => (
           <div
             key={region}

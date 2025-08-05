@@ -13,7 +13,7 @@ const MainNavbar = () => {
         </button>
 
         {/* Center: Navigation Links */}
-        <div className="w-full lg:w-fit flex items-center justify-between gap-6 text-gray-700 font-medium">
+        <div className="w-full lg:w-fit flex items-center justify-between gap-6 text-gray-700 text-xs md:text-sm font-medium">
           <Link to="/products" className="hover:text-blue-600">All Products</Link>
           <button className="hover:text-blue-600">Hot Offers</button>
           <button className="hover:text-blue-600">Gift Boxes</button>
