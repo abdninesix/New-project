@@ -124,7 +124,7 @@ const ProductList = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-50 transition"
                             aria-label="Previous page"
                         >
                             <ChevronLeft className="w-5 h-5" />
@@ -137,7 +137,7 @@ const ProductList = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-50 transition"
                             aria-label="Next page"
                         >
                             <ChevronRight className="w-5 h-5" />
