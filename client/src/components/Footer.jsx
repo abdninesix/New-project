@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
 
           {/* Logo and socials */}
-          <div className="flex flex-col items-start gap-4 justify-between font-bold text-base">
+          <div className="flex flex-col items-start gap-6 justify-between font-bold text-base">
             <Link to="/" className="text-3xl font-bold text-blue-400 flex items-center gap-2">
               <ShoppingBag className="shadow-[5px_0px_0px] shadow-blue-400 size-10 bg-blue-500 rounded-lg p-2 text-white" /><span>Brand</span>
             </Link>
