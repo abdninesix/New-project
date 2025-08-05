@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import FilterSidebar from "../components/FilterSidebar";
 import ProductCard from "../components/ProductCard";
-import { LayoutGrid, List } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid, List } from "lucide-react";
 import Newsletter from "../components/Newsletter";
 import API from "../api/axios";
 
@@ -120,25 +120,27 @@ const ProductList = () => {
                         </div>
                     </div>
                     {/* Pagination component */}
-                    <div className="flex justify-end">
+                    <div className="flex justify-end items-center gap-2 mt-4">
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="px-4 py-2 bg-gray-200 rounded-full cursor-pointer disabled:hidden"
+                            className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            aria-label="Previous page"
                         >
-                            {"<"}
+                            <ChevronLeft className="w-5 h-5" />
                         </button>
 
-                        <span className="px-4 py-2">
-                            {currentPage} of {totalPages}
+                        <span className="px-4 py-2 text-sm text-gray-700">
+                            Page {currentPage} of {totalPages}
                         </span>
 
                         <button
                             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="px-4 py-2 bg-gray-200 rounded-full cursor-pointer disabled:hidden"
+                            className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            aria-label="Next page"
                         >
-                            {">"}
+                            <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
 
