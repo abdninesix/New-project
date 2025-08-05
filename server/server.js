@@ -13,7 +13,8 @@ const app = express();
 
 // Middlewares
 const corsOptions = {
-  origin: 'https://ecommerce-beta-by-abdullah.vercel.app', // specify the exact origin here
+  // origin: 'http://localhost:5173',
+  origin: 'https://ecommerce-beta-by-abdullah.vercel.app',
   credentials: true, // allow credentials (cookies, headers, etc.)
 };
 

@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
+import { toast } from "react-toastify";
 
 const HeaderTop = () => {
   const [category, setCategory] = useState("all");
@@ -61,11 +62,13 @@ const HeaderTop = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setUser(null);
-    navigate("/login");
-  };
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+      navigate("/");
+      window.location.reload();
+      toast.info("Logged out successfully!");
+    };
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 bg-white border-b border-gray-200 py-3 flex items-center justify-between gap-4 text-sm relative">
