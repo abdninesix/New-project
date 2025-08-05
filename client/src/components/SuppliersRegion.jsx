@@ -24,7 +24,7 @@ const SuppliersRegion = () => {
             className="flex items-center gap-3"
           >
             <MapPin className="text-blue-600" />
-            <span className="text-lg">{region}</span>
+            <span className="lg:text-lg">{region}</span>
           </div>
         ))}
       </div>
