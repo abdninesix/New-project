@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MainNavbar = () => {
   return (
     <div className="md:px-8 lg:px-16 xl:px-32 bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between text-sm">
-      <div className="flex justify-between gap-4">
+      <div className="w-full flex justify-between gap-4">
         {/* Left: All Category */}
         <button className="flex items-center gap-1 text-gray-700 font-medium cursor-pointer hover:text-blue-600">
           <Menu />
