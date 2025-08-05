@@ -13,7 +13,7 @@ const Footer = () => {
 
       {/* Links + App section */}
       <div className="bg-white py-10 text-lg px-4 md:px-8 lg:px-16 xl:px-32">
-        <div className="mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mb-8">
+        <div className="mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
 
           {/* Logo and socials */}
           <div className="flex flex-col items-start justify-between font-bold text-base">
