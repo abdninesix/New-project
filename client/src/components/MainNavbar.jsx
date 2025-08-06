@@ -18,7 +18,7 @@ const MainNavbar = () => {
           <button className="hover:text-blue-600">Hot Offers</button>
           <button className="hover:text-blue-600">Gift Boxes</button>
           <button className="hover:text-blue-600">Menu</button>
-          <button className="hover:text-blue-600 flex items-end">Help<ChevronDown className="w-4 h-4" /></button>
+          <button className="hover:text-blue-600">Help</button>
         </div>
 
         {/* Right: Language & Ship To */}
