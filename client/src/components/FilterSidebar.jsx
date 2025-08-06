@@ -33,10 +33,10 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
   return (
     <div className="w-full lg:w-64">
       {/* Mobile Toggle Button */}
-      <div className="lg:hidden mb-4 flex justify-end">
+      <div className="lg:hidden flex justify-end">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
         >
           <SlidersHorizontal className="w-4 h-4" />
           Filters
