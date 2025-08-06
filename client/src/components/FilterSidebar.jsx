@@ -45,7 +45,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
 
       {/* Sidebar */}
       <aside
-        className={`rounded-xl space-y-6 transition-all duration-300 overflow-hidden 
+        className={`rounded-xl space-y-6 transition-all duration-300 overflow-hidden pt-6 lg:pt-0
         ${isOpen ? "max-h-[1500px] opacity-100" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}
       >
         {/* Category Filter */}
