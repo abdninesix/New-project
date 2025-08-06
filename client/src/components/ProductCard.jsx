@@ -11,7 +11,7 @@ const ProductCard = ({ product, viewMode }) => {
         <img
           src={image}
           alt={name}
-          className="w-full h-64 sm:h-72 object-cover rounded-md mb-3"
+          className="h-64 sm:h-72 object-cover rounded-md mb-3"
         />
         <div className="flex-1 flex flex-col justify-between">
           <h2 className="text-lg font-semibold line-clamp-1">{name}</h2>
@@ -46,7 +46,7 @@ const ProductCard = ({ product, viewMode }) => {
       <img
         src={image}
         alt={name}
-        className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-32 object-cover rounded-md"
+        className="h-28 sm:w-32 sm:h-32 md:w-40 md:h-32 object-cover rounded-md"
       />
 
       {/* Product Details */}
