@@ -10,7 +10,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { toast } from "react-toastify";
@@ -24,6 +24,7 @@ const HeaderTop = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+  const menuRef = useRef(); // Ref for hamburger menu
 
   // Load logged-in user from localStorage
   useEffect(() => {
@@ -62,13 +63,28 @@ const HeaderTop = () => {
   };
 
   const handleLogout = () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      setUser(null);
-      navigate("/");
-      window.location.reload();
-      toast.info("Logged out successfully!");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/");
+    window.location.reload();
+    toast.info("Logged out successfully!");
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
     };
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 bg-white border-b border-gray-200 py-3 flex items-center justify-between gap-4 text-sm relative">
@@ -111,7 +127,6 @@ const HeaderTop = () => {
                 to={`/products/${product._id}`}
                 key={product._id}
                 className="flex items-center gap-3 p-2 hover:bg-gray-100 cursor-pointer"
-                onMouseDown={() => console.log("Clicked product:", product.name)}
               >
                 <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                 <span className="text-sm">{product.name}</span>
@@ -131,6 +146,7 @@ const HeaderTop = () => {
 
       {/* Icons Section */}
       <div
+        ref={menuRef}
         className={`${
           menuOpen ? "flex" : "hidden"
         } md:flex flex-col md:flex-row items-center gap-6 text-gray-500 absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none py-4 md:py-0 z-50 transition-all duration-300`}

@@ -72,12 +72,12 @@ const ProductDetails = () => {
   if (!product) return <div className="h-screen text-center text-red-500">Product not found.</div>;
 
   return (
-    <div className="bg-[#F7FAFC] text-gray-900 pb-8 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
+    <div className="bg-[#F7FAFC] text-gray-900 py-8 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
       {/* Breadcrumbs */}
       <Breadcrumbs />
 
       {/* Main Product Section */}
-      <div className="bg-white grid grid-cols-1 lg:grid-cols-11 gap-6 rounded-lg border border-gray-300">
+      <div className="mt-8bg-white grid grid-cols-1 lg:grid-cols-11 gap-6 rounded-lg border border-gray-300">
         {/* Left: Product Info */}
         <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Product Image */}
