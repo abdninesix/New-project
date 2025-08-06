@@ -101,20 +101,20 @@ const ProductDetails = () => {
 
           {/* Details */}
           <div className="p-4 space-y-4">
-            <h1 className="text-xl font-semibold">{product.name}</h1>
+            <h1 className="text-2xl font-semibold">{product.name}</h1>
+            <div className="text-orange-600 font-bold text-2xl">Rs.{product.price}</div>
             <div
-              className={`${product.stock > 0 ? "text-green-600" : "text-red-600"} font-medium`}
+              className={`${product.stock > 0 ? "text-green-600" : "text-red-600"} font-medium text-xl`}
             >
               {product.stock > 0 ? "In stock" : "Out of stock"}
             </div>
-            <div className="text-orange-600 font-bold text-xl">Rs.{product.price}</div>
             <div className="text-yellow-500">⭐⭐⭐⭐ 4.5</div>
             <div className="text-gray-500">(12K sold)</div>
             <div>
               <strong>Stock:</strong> {product.stock || "Out of stock"} left
             </div>
             <div>
-              <strong>Warranty:</strong> 1 year
+              <strong>Warranty:</strong> (N/A)
             </div>
             <div>
               <strong>Category:</strong> {product.category?.name || "N/A"}
@@ -124,7 +124,7 @@ const ProductDetails = () => {
             {product.stock > 0 && (
               <button
                 onClick={handleAddToCart}
-                className="mt-4 flex gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
+                className="mt-6 flex gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
               >
                 <ShoppingCart className="w-5 h-5"/> Add to Cart
               </button>
@@ -133,7 +133,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Right: Supplier Info */}
-        <div className="lg:col-span-3 h-fit bg-white p-4 rounded-lg border mt-10 mb-10 mr-10 border-gray-300 flex flex-col justify-between">
+        <div className="lg:col-span-3 h-fit bg-white p-4 rounded-lg border m-8 border-gray-300 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-4">
               <div className="bg-sky-50 w-10 h-10 flex items-center justify-center text-2xl rounded">
@@ -166,7 +166,7 @@ const ProductDetails = () => {
       </div>
 
       {/* Tabs Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
+      <div className="flex flex-col-reverse lg:grid lg:grid-cols-4 gap-8 mt-8">
         <div className="col-span-3 p-4 bg-white rounded-lg border border-gray-300 order-2 lg:order-1">
           <div>
             <div className="flex flex-wrap gap-4 sm:gap-6">
