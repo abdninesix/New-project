@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import API from "../api/axios";
 import DealsGrid from "../components/DealsGrid";
 import { toast } from "react-toastify";
-import { CheckSquare, Globe, PinIcon, ShoppingCart } from "lucide-react";
+import { CheckSquare, Globe, Loader2, PinIcon, ShoppingCart } from "lucide-react";
 
 const tabs = ["Description", "Reviews", "Shipping", "About Seller"];
 
@@ -68,7 +68,7 @@ const ProductDetails = () => {
     }
   };
 
-  if (loading) return <div className="p-10 text-center">Loading product...</div>;
+  if (loading) return <><Loader2 className="animate-spin w-4 h-4" /></>;
   if (!product) return <div className="p-10 text-center text-red-500">Product not found.</div>;
 
   return (
@@ -126,7 +126,7 @@ const ProductDetails = () => {
                 onClick={handleAddToCart}
                 className="mt-6 flex gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
               >
-                <ShoppingCart className="w-5 h-5"/> Add to Cart
+                <ShoppingCart className="w-5 h-5" /> Add to Cart
               </button>
             )}
           </div>
@@ -174,11 +174,10 @@ const ProductDetails = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`pb-2 text-sm md:text-base font-medium ${
-                    activeTab === tab
+                  className={`pb-2 text-sm md:text-base font-medium ${activeTab === tab
                       ? "text-blue-600 border-b-2 border-blue-500"
                       : "text-gray-600 hover:text-blue-600"
-                  }`}
+                    }`}
                 >
                   {tab}
                 </button>
