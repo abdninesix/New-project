@@ -77,7 +77,7 @@ const ProductDetails = () => {
       <Breadcrumbs />
 
       {/* Main Product Section */}
-      <div className="mt-8bg-white grid grid-cols-1 lg:grid-cols-11 gap-6 rounded-lg border border-gray-300">
+      <div className="mt-8 bg-white grid grid-cols-1 lg:grid-cols-11 gap-6 rounded-lg border border-gray-300">
         {/* Left: Product Info */}
         <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Product Image */}
