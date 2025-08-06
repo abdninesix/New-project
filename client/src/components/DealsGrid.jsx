@@ -32,7 +32,7 @@ const DealsGrid = () => {
 
         {/* Loading State */}
         {loading ? (
-          <div className="h-screen w-screen flex items-center justify-center"><Loader2 className="animate-spin w-4 h-4" /></div>
+          <div className="w-full flex items-center justify-center"><Loader2 className="animate-spin w-4 h-4" /></div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
             {products.map((product) => (
