@@ -93,7 +93,7 @@ const ProductDetails = () => {
                   key={i}
                   src={product.image}
                   alt="thumb"
-                  className="border border-gray-300 w-16 h-16 object-cover rounded"
+                  className="border border-gray-300 size-14 md:size-16 object-cover rounded"
                 />
               ))}
             </div>
