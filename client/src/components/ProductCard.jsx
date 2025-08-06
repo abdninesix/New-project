@@ -8,11 +8,13 @@ const ProductCard = ({ product, viewMode }) => {
   if (viewMode === "grid") {
     return (
       <div className="bg-white rounded-lg border border-gray-200 hover:shadow-md transition p-4 w-full sm:w-[300px] md:w-[350px] flex flex-col">
-        <img
-          src={image}
-          alt={name}
-          className="h-64 sm:h-72 object-cover rounded-md mb-3"
-        />
+        <div className="h-64 sm:h-72 md:h-80 overflow-hidden rounded-md mb-3">
+          <img
+            src={image}
+            alt={name}
+            className="object-cover"
+          />
+        </div>
         <div className="flex-1 flex flex-col justify-between">
           <h2 className="text-lg font-semibold line-clamp-1">{name}</h2>
           <p className="text-gray-500 text-xs">
@@ -43,11 +45,13 @@ const ProductCard = ({ product, viewMode }) => {
   return (
     <div className="bg-white rounded-lg border border-gray-200 hover:shadow-md transition p-4 w-full flex items-start gap-4">
       {/* Product Image */}
-      <img
-        src={image}
-        alt={name}
-        className="h-28 sm:w-32 sm:h-32 md:w-40 md:h-32 object-cover rounded-md"
-      />
+      <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-32 overflow-hidden rounded-md">
+        <img
+          src={image}
+          alt={name}
+          className="object-cover"
+        />
+      </div>
 
       {/* Product Details */}
       <div className="flex flex-col justify-between flex-1">
