@@ -60,7 +60,7 @@ const ProductList = () => {
                         />
 
                         {/* Main Content */}
-                        <div className="w-full flex flex-col gap-6">
+                        <div className="w-full flex flex-col gap-4">
                             {/* Sort & Controls */}
                             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-2 border border-gray-300 rounded-lg bg-white">
                                 <div className="text-gray-700 text-sm">
@@ -81,7 +81,7 @@ const ProductList = () => {
                                     <select
                                         value={sort}
                                         onChange={(e) => setSort(e.target.value)}
-                                        className="rounded-md text-sm px-3 py-1 outline-none border border-gray-300"
+                                        className="rounded-md text-sm px-2 py-1 outline-none border border-gray-300"
                                     >
                                         <option value="relevance">Sort by: Relevance</option>
                                         <option value="latest">Sort by: Latest</option>

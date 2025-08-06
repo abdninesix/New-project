@@ -24,7 +24,7 @@ const DealsGrid = () => {
   }, []);
 
   return (
-    <section className="py-6 bg-[#F7FAFC] mb-8">
+    <section className="py-6 mb-8">
       <div className="mx-auto">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center sm:text-left">
           Recommended items

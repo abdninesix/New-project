@@ -33,7 +33,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
   return (
     <div className="w-full lg:w-64">
       {/* Mobile Toggle Button */}
-      <div className="lg:hidden flex justify-end">
+      <div className="lg:hidden flex items-center justify-start">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
@@ -58,7 +58,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
                   <label className="flex items-center cursor-pointer hover:text-blue-600">
                     <input
                       type="checkbox"
-                      className="mr-2 accent-blue-600"
+                      className="mr-2 accent-blue-500"
                       checked={selectedCategories.includes(cat._id)}
                       onChange={() => handleCheckboxChange(cat._id)}
                     />{" "}
@@ -80,7 +80,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
             {["Samsung", "Apple", "Huawei", "Poco", "Lenovo"].map((brand) => (
               <li key={brand}>
                 <label className="flex items-center cursor-pointer hover:text-blue-600">
-                  <input type="checkbox" className="mr-2 accent-blue-600" /> {brand}
+                  <input type="checkbox" className="mr-2 accent-blue-500" /> {brand}
                 </label>
               </li>
             ))}
@@ -96,7 +96,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
             {["Metallic", "Plastic cover", "8GB RAM", "Super power", "Large memory"].map((feature) => (
               <li key={feature}>
                 <label className="flex items-center cursor-pointer hover:text-blue-600">
-                  <input type="checkbox" className="mr-2 accent-blue-600" /> {feature}
+                  <input type="checkbox" className="mr-2 accent-blue-500" /> {feature}
                 </label>
               </li>
             ))}
@@ -112,7 +112,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
             type="range"
             min="0"
             max="1000"
-            className="w-full accent-blue-600"
+            className="w-full accent-blue-500"
           />
           <p className="text-sm mt-1">$0 - $1000</p>
         </div>
@@ -125,7 +125,7 @@ const FilterSidebar = ({ selectedCategories, onCategoryChange }) => {
             {["Any", "Refurbished", "Brand new", "Old items"].map((condition) => (
               <li key={condition}>
                 <label className="flex items-center cursor-pointer hover:text-blue-600">
-                  <input type="radio" name="condition" className="mr-2 accent-blue-600" /> {condition}
+                  <input type="radio" name="condition" className="mr-2 accent-blue-500" /> {condition}
                 </label>
               </li>
             ))}

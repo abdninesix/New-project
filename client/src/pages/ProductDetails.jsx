@@ -72,7 +72,7 @@ const ProductDetails = () => {
   if (!product) return <div className="h-screen text-center text-red-500">Product not found.</div>;
 
   return (
-    <div className="bg-[#F7FAFC] text-gray-900 py-8 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
+    <div className="bg-[#F7FAFC] text-gray-900 py-6 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
       {/* Breadcrumbs */}
       <Breadcrumbs />
 
