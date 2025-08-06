@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section>
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-8 gap-4 bg-white border border-gray-200 md:p-4 rounded-md">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-8 gap-4 bg-white border border-gray-200 md:p-4 rounded-md">
         {/* Sidebar Category Links */}
         <div className="hidden md:block col-span-2 text-gray-700">
           {[
