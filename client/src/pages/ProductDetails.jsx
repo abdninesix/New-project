@@ -68,8 +68,8 @@ const ProductDetails = () => {
     }
   };
 
-  if (loading) return <div className="flex items-center justify-center h-screen"><Loader2 className="animate-spin w-4 h-4" /></div>;
-  if (!product) return <div className="p-10 text-center text-red-500">Product not found.</div>;
+  if (loading) return <div className="flex items-center justify-center"><Loader2 className="animate-spin w-4 h-4" /></div>;
+  if (!product) return <div className="h-screen text-center text-red-500">Product not found.</div>;
 
   return (
     <div className="bg-[#F7FAFC] text-gray-900 pb-8 px-4 md:px-8 lg:px-16 xl:px-32 duration-200">
