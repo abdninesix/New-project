@@ -108,7 +108,7 @@ const HeaderTop = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="hidden md:border-l-2 border-blue-500 p-1 text-sm focus:outline-none"
+          className="hidden lg:block md:border-l-2 border-blue-500 p-1 text-sm focus:outline-none"
         >
           <option value="all">All Categories</option>
           <option value="electronics">Electronics</option>
